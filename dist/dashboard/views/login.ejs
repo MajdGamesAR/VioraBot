@@ -1,0 +1,28 @@
+<%- contentFor('body') %>
+
+<div class="viora-auth-panel">
+    <div class="flex flex-col items-center text-center mb-5">
+        <div class="viora-feature-icon" style="width:3.4rem;height:3.4rem;font-size:1.35rem">
+            <i class="fab fa-discord"></i>
+        </div>
+        <h1 class="text-2xl font-bold" style="color:var(--viora-text);margin-top:0.8rem"><%= locale.dashboard.loginTitle || 'Dashboard Login' %></h1>
+        <p class="text-sm" style="color:var(--viora-text-3);margin-top:0.4rem"><%= locale.dashboard.loginSubtitle || 'Sign in with your Discord account to access the dashboard' %></p>
+    </div>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+    <div class="rounded-xl px-4 py-3 text-sm mb-4" style="background:rgba(251,113,133,0.12);border:1px solid rgba(251,113,133,0.35);color:var(--viora-danger)">
+        <i class="fas fa-triangle-exclamation" style="margin-inline-end:0.4rem"></i><%= error %>
+    </div>
+    <% } %>
+
+    <a href="/auth/login" class="viora-btn viora-btn-primary" style="width:100%;padding:0.85rem 1rem;font-size:0.95rem">
+        <i class="fab fa-discord text-xl"></i>
+        <span><%= locale.dashboard.loginWithDiscord || 'Login with Discord' %></span>
+    </a>
+
+    <div class="viora-divider" style="margin:1.4rem 0 0.9rem"></div>
+    <p class="text-center" style="font-size:0.75rem;color:var(--viora-text-3)">
+        <i class="fas fa-shield-halved" style="margin-inline-end:0.3rem;color:var(--viora-primary-2)"></i>
+        <%= locale.dashboard.loginNote || 'You must be a member of the configured server to access the dashboard.' %>
+    </p>
+</div>

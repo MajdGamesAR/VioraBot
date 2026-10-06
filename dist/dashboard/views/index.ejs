@@ -1,0 +1,378 @@
+<%- contentFor('body') %>
+
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg mb-6 overflow-hidden animate-fade-in">
+  <div class="relative p-6 md:p-8">
+    <div class="absolute right-0 top-0 opacity-10">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-64 h-64">
+        <path d="M21 14c0 2.761-2.239 5-5 5a5 5 0 01-5-5c0-2.761 2.239-5 5-5a5 5 0 015 5zm-16-3c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm18-3c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm-6-3c0 1.657-1.343 3-3 3S7 6.657 7 5s1.343-3 3-3 3 1.343 3 3z"></path>
+      </svg>
+    </div>
+    <div class="relative z-10">
+      <h1 class="text-3xl md:text-4xl font-bold mb-2"><%= locale.dashboard.welcome || "Welcome to Viora" %></h1>
+      <p class="text-blue-100 mb-6 max-w-2xl">
+        <%= locale.dashboard.welcomeMessage || "Manage your Discord bot, customize settings, and monitor statistics all from one place." %>
+      </p>
+      
+      <div class="flex flex-wrap gap-3 mt-2">
+        <div class="flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5">
+          <div class="h-2.5 w-2.5 rounded-full bg-green-400 animate-pulse"></div>
+          <span class="text-sm font-medium">Bot Online</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5">
+          <div class="h-2.5 w-2.5 rounded-full bg-blue-400"></div>
+          <span class="text-sm font-medium" data-stat="ping">Ping: <%= stats.ping %>ms</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5">
+          <div class="h-2.5 w-2.5 rounded-full bg-purple-400"></div>
+          <span class="text-sm font-medium">Uptime: <%= stats.uptime %></span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5">
+          <div class="h-2.5 w-2.5 rounded-full <%= stats.memoryUsage < 200 ? 'bg-green-400' : (stats.memoryUsage < 500 ? 'bg-yellow-400' : 'bg-red-400') %>"></div>
+          <span class="text-sm font-medium" data-stat="memory">Memory: <%= stats.memoryUsage %> MB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+  <div class="lg:col-span-2 space-y-6">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white"><%= locale.dashboard.overviewStats || "Overview Stats" %></h2>
+        <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+          <span id="last-update">Live Data</span>
+          <i class="fas fa-sync-alt ml-1 cursor-pointer hover:text-blue-500" id="refresh-stats" title="Refresh stats"></i>
+        </span>
+      </div>
+      
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" data-stat-type="servers">
+                <div class="flex items-center justify-between">
+                    <div>
+              <p class="text-sm opacity-75"><%= locale.dashboard.stats.servers || "Servers" %></p>
+              <h3 class="text-3xl font-bold animate-count"><%= stats.servers %></h3>
+                    </div>
+            <div class="h-12 w-12 bg-white/20 rounded-lg flex items-center justify-center">
+              <i class="fas fa-server text-2xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 text-xs font-medium text-blue-100">
+            <span class="inline-flex items-center">
+              <i class="fas fa-arrow-<%= trends.servers.direction %> mr-1"></i> <%= trends.servers.percentage %>% from last <%= trends.servers.period %>
+            </span>
+          </div>
+            </div>
+
+        <div class="bg-gradient-to-br from-emerald-500 to-green-600 text-white rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" data-stat-type="users">
+                <div class="flex items-center justify-between">
+                    <div>
+              <p class="text-sm opacity-75"><%= locale.dashboard.stats.users || "Users" %></p>
+              <h3 class="text-3xl font-bold animate-count"><%= stats.users %></h3>
+                    </div>
+            <div class="h-12 w-12 bg-white/20 rounded-lg flex items-center justify-center">
+              <i class="fas fa-users text-2xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 text-xs font-medium text-green-100">
+            <span class="inline-flex items-center">
+              <i class="fas fa-arrow-<%= trends.users.direction %> mr-1"></i> <%= trends.users.percentage %>% from last <%= trends.users.period %>
+            </span>
+          </div>
+            </div>
+
+        <div class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" data-stat-type="commands">
+                <div class="flex items-center justify-between">
+                    <div>
+              <p class="text-sm opacity-75"><%= locale.dashboard.stats.commands || "Commands" %></p>
+              <h3 class="text-3xl font-bold animate-count"><%= stats.commands %></h3>
+                    </div>
+            <div class="h-12 w-12 bg-white/20 rounded-lg flex items-center justify-center">
+              <i class="fas fa-terminal text-2xl"></i>
+            </div>
+          </div>
+          <div class="mt-4 text-xs font-medium text-purple-100">
+            <span class="inline-flex items-center">
+              <i class="fas fa-arrow-<%= trends.commands.direction %> mr-1"></i> <%= trends.commands.percentage %>% from last <%= trends.commands.period %>
+            </span>
+          </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white"><%= locale.dashboard.moduleStatus || "Module Status" %></h2>
+        <a href="#" class="text-blue-500 hover:text-blue-700 text-sm font-medium">
+          View All
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <div class="w-9 h-9 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mr-3">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-800 dark:text-white">Protection</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400"><%= moduleStatus.protection.activeRules %> active rules</p>
+            </div>
+          </div>
+          <div class="<%= moduleStatus.protection.enabled ? 'text-green-500' : 'text-gray-400' %>">
+            <i class="fas <%= moduleStatus.protection.enabled ? 'fa-check-circle' : 'fa-times-circle' %>"></i>
+          </div>
+        </div>
+        
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <div class="w-9 h-9 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center text-green-600 dark:text-green-400 mr-3">
+              <i class="fas fa-ticket-alt"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-800 dark:text-white">Tickets</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400"><%= moduleStatus.tickets.sections %> ticket types</p>
+            </div>
+          </div>
+          <div class="<%= moduleStatus.tickets.enabled ? 'text-green-500' : 'text-gray-400' %>">
+            <i class="fas <%= moduleStatus.tickets.enabled ? 'fa-check-circle' : 'fa-times-circle' %>"></i>
+          </div>
+        </div>
+        
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <div class="w-9 h-9 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-purple-600 dark:text-purple-400 mr-3">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-800 dark:text-white">Applications</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400"><%= moduleStatus.apply.positions %> active positions</p>
+            </div>
+          </div>
+          <div class="<%= moduleStatus.apply.enabled ? 'text-green-500' : 'text-gray-400' %>">
+            <i class="fas <%= moduleStatus.apply.enabled ? 'fa-check-circle' : 'fa-times-circle' %>"></i>
+          </div>
+        </div>
+        
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <div class="w-9 h-9 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center text-amber-600 dark:text-amber-400 mr-3">
+              <i class="fas fa-gavel"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-800 dark:text-white">Rules</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400"><%= moduleStatus.rules.sections %> rule sections</p>
+            </div>
+          </div>
+          <div class="<%= moduleStatus.rules.enabled ? 'text-green-500' : 'text-gray-400' %>">
+            <i class="fas <%= moduleStatus.rules.enabled ? 'fa-check-circle' : 'fa-times-circle' %>"></i>
+          </div>
+        </div>
+        
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <div class="w-9 h-9 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center text-pink-600 dark:text-pink-400 mr-3">
+              <i class="fas fa-gift"></i>
+                </div>
+            <div>
+              <h3 class="font-medium text-gray-800 dark:text-white">Giveaways</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400"><%= moduleStatus.giveaway && moduleStatus.giveaway.enabled ? 'Active' : 'Inactive' %></p>
+            </div>
+          </div>
+          <div class="<%= moduleStatus.giveaway && moduleStatus.giveaway.enabled ? 'text-green-500' : 'text-gray-400' %>">
+            <i class="fas <%= moduleStatus.giveaway && moduleStatus.giveaway.enabled ? 'fa-check-circle' : 'fa-times-circle' %>"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:col-span-1 space-y-6">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+      <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-6"><%= locale.dashboard.botHealth || "Bot Health" %></h2>
+      
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Ping</span>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300"><%= stats.ping %> ms</span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+            <% 
+              let pingColor = "bg-green-500";
+              if(stats.ping > 200) pingColor = "bg-red-500";
+              else if(stats.ping > 100) pingColor = "bg-yellow-500";
+              
+              let pingWidthClass = "w-full";
+              if(stats.ping < 50) pingWidthClass = "w-4/5";
+              else if(stats.ping < 100) pingWidthClass = "w-3/5";
+              else if(stats.ping < 150) pingWidthClass = "w-2/5";
+              else if(stats.ping < 200) pingWidthClass = "w-1/5";
+              else pingWidthClass = "w-1/10"; 
+            %>
+            <div class="<%= pingColor %> <%= pingWidthClass %> h-2.5 rounded-full"></div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Memory Usage</span>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300"><%= stats.memoryUsage %> MB</span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+            <% 
+              let memColor = "bg-green-500";
+              if(stats.memoryUsage > 500) memColor = "bg-red-500";
+              else if(stats.memoryUsage > 200) memColor = "bg-yellow-500";
+              
+              let memWidthClass = "w-1/6";
+              if(stats.memoryUsage < 100) memWidthClass = "w-1/6";
+              else if(stats.memoryUsage < 200) memWidthClass = "w-2/6";
+              else if(stats.memoryUsage < 300) memWidthClass = "w-3/6";
+              else if(stats.memoryUsage < 400) memWidthClass = "w-4/6";
+              else if(stats.memoryUsage < 500) memWidthClass = "w-5/6";
+              else memWidthClass = "w-full";
+            %>
+            <div class="<%= memColor %> <%= memWidthClass %> h-2.5 rounded-full"></div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Uptime</span>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300"><%= stats.uptime %></span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+            <div class="bg-blue-500 h-2.5 rounded-full w-full"></div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Protection Status</span>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300"><%= stats.protection.activeProtections %> active</span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+            <% 
+              let protectionWidthClass = "w-1/6";
+              if(stats.protection.activeProtections <= 1) protectionWidthClass = "w-1/6";
+              else if(stats.protection.activeProtections <= 3) protectionWidthClass = "w-2/6";
+              else if(stats.protection.activeProtections <= 5) protectionWidthClass = "w-3/6";
+              else if(stats.protection.activeProtections <= 7) protectionWidthClass = "w-4/6";
+              else if(stats.protection.activeProtections <= 9) protectionWidthClass = "w-5/6";
+              else protectionWidthClass = "w-full";
+            %>
+            <div class="bg-purple-500 <%= protectionWidthClass %> h-2.5 rounded-full"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+      <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-6"><%= locale.dashboard.quickActions || "Quick Actions" %></h2>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <a href="/protection" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-4 flex flex-col items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+          <i class="fas fa-shield-alt text-2xl mb-2"></i>
+          <span class="text-sm font-medium">Protection</span>
+        </a>
+        
+        <a href="/tickets" class="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4 flex flex-col items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+          <i class="fas fa-ticket-alt text-2xl mb-2"></i>
+          <span class="text-sm font-medium">Tickets</span>
+        </a>
+        
+        <a href="/apply" class="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-4 flex flex-col items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+          <i class="fas fa-clipboard-list text-2xl mb-2"></i>
+          <span class="text-sm font-medium">Apply</span>
+        </a>
+        
+        <a href="/commands" class="bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg p-4 flex flex-col items-center justify-center transform transition-all duration-300 hover:scale-105 hover:shadow-md">
+          <i class="fas fa-terminal text-2xl mb-2"></i>
+          <span class="text-sm font-medium">Commands</span>
+        </a>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+      <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-6"><%= locale.dashboard.activity.title || "Recent Activity" %></h2>
+      
+      <div class="relative">
+        <div class="absolute top-0 bottom-0 left-3.5 w-px bg-gray-200 dark:bg-gray-700"></div>
+        
+        <div class="space-y-6">
+          <% recentActivity.forEach(activity => { %>
+            <div class="relative flex items-start">
+              <div class="h-7 w-7 rounded-full bg-<%= activity.color %>-600 flex items-center justify-center ring-4 ring-white dark:ring-gray-800 z-10">
+                <i class="fas fa-<%= activity.icon %> text-white text-xs"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-sm font-medium text-gray-800 dark:text-white"><%= activity.title %></h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400"><%= activity.description %></p>
+                <span class="block text-xs text-gray-500 dark:text-gray-400 mt-1"><%= activity.timeAgo %></span>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-grid mb-6">
+  <div class="stat-card blue-glow transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="stat-icon text-blue-500">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="stat-content">
+      <h3 class="stat-value fade-in-mobile" id="activeProtections">
+        <%= stats.protection.activeProtections %>
+      </h3>
+      <p class="stat-label">
+        <%= locale.dashboard.protection.stats.activeProtections || "Active Protections" %>
+      </p>
+    </div>
+  </div>
+  
+  <div class="stat-card green-glow transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+    <div class="stat-icon text-green-500">
+      <i class="fas fa-users-cog"></i>
+    </div>
+    <div class="stat-content">
+      <h3 class="stat-value fade-in-mobile" id="totalRoles">
+        <%= stats.protection.protectedRoles %>
+      </h3>
+                <p class="stat-label">
+        <%= locale.dashboard.protection.stats.protectedRoles || "Protected Roles" %>
+                </p>
+            </div>
+        </div>
+        
+  <div class="stat-card purple-glow transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+    <div class="stat-icon text-purple-500">
+      <i class="fas fa-robot"></i>
+    </div>
+    <div class="stat-content">
+      <h3 class="stat-value fade-in-mobile" id="whitelistedBots">
+        <%= stats.protection.whitelistedBots %>
+      </h3>
+      <p class="stat-label">
+        <%= locale.dashboard.protection.stats.whitelistedBots || "Whitelisted Bots" %>
+      </p>
+    </div>
+</div>
+
+  <div class="stat-card red-glow transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+    <div class="stat-icon text-red-500">
+      <i class="fas fa-ban"></i>
+    </div>
+    <div class="stat-content">
+      <h3 class="stat-value fade-in-mobile" id="blockedActions">
+        <%= stats.protection.activeLogs %>
+      </h3>
+      <p class="stat-label">
+        <%= locale.dashboard.protection.stats.blockedActions || "Active Logs" %>
+      </p>
+    </div>
+  </div>
+</div>

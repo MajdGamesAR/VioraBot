@@ -1,0 +1,105 @@
+<%- contentFor('body') %>
+
+<div class="space-y-6 p-4 md:p-6 animate-fade-in">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white"><%= locale.dashboard.antiraid.title %></h2>
+            <label class="switch-large">
+                <input type="checkbox" id="raidEnabled" <%= settings.protection?.raid?.enabled ? 'checked' : '' %>>
+                <span class="slider-large"></span>
+            </label>
+        </div>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6"><%= locale.dashboard.antiraid.settingsTitle %></p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.joinLimit %></label>
+                <input type="number" id="raidJoinLimit" min="1" max="100" value="<%= settings.protection?.raid?.joinLimit || 5 %>"
+                       class="input-field">
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.timeWindow %></label>
+                <input type="number" id="raidTimeWindow" min="1000" max="3600000" step="1000" value="<%= settings.protection?.raid?.timeWindow || 10000 %>"
+                       class="input-field">
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.cooldown %></label>
+                <input type="number" id="raidCooldown" min="0" max="86400000" step="1000" value="<%= settings.protection?.raid?.cooldown || 60000 %>"
+                       class="input-field">
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.newAccountAgeDays %></label>
+                <input type="number" id="raidNewAccountAge" min="0" max="3650" value="<%= settings.protection?.raid?.newAccountAgeDays || 7 %>"
+                       class="input-field">
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.logChannel %></label>
+                <select id="raidLogChannel" class="input-field">
+                    <option value=""><%= locale.dashboard.logs.selectChannel %></option>
+                    <% channels.forEach(channel => { %>
+                        <option value="<%= channel.id %>" <%= settings.protection?.raid?.logChannelId === channel.id ? 'selected' : '' %>>
+                            #<%= channel.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.action %></label>
+                <select id="raidAction" class="input-field">
+                    <option value="kick" <%= settings.protection?.raid?.action?.type === 'kick' ? 'selected' : '' %>><%= locale.dashboard.antiraid.actionKick %></option>
+                    <option value="ban" <%= settings.protection?.raid?.action?.type === 'ban' ? 'selected' : '' %>><%= locale.dashboard.antiraid.actionBan %></option>
+                    <option value="none" <%= settings.protection?.raid?.action?.type === 'none' ? 'selected' : '' %>><%= locale.dashboard.antiraid.actionNone %></option>
+                </select>
+            </div>
+            <div class="form-group lg:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.botWhitelist %></label>
+                <input type="text" id="raidBotWhitelist" placeholder="123456789012345678, 987654321098765432"
+                       value="<%= (settings.protection?.raid?.botWhitelist || []).join(', ') %>"
+                       class="input-field">
+            </div>
+            <div class="form-group lg:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= locale.dashboard.antiraid.reason %></label>
+                <input type="text" id="raidReason" maxlength="300" value="<%= settings.protection?.raid?.action?.reason || '' %>"
+                       class="input-field">
+            </div>
+        </div>
+
+        <div class="flex justify-end mt-8">
+            <button id="saveRaidSettings" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+                <i class="fas fa-save mr-2"></i><%= locale.dashboard.antiraid.save %>
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><%= locale.dashboard.antiraid.events %></h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                        <th class="py-3 px-4"><%= locale.dashboard.history.date %></th>
+                        <th class="py-3 px-4"><%= locale.dashboard.history.user %></th>
+                        <th class="py-3 px-4"><%= locale.dashboard.history.action %></th>
+                        <th class="py-3 px-4"><%= locale.dashboard.history.reason %></th>
+                    </tr>
+                </thead>
+                <tbody id="raidEventsBody">
+                    <% if (events && events.length > 0) { %>
+                        <% events.forEach(ev => { %>
+                            <tr class="border-b border-gray-100 dark:border-gray-700">
+                                <td class="py-3 px-4 text-gray-600 dark:text-gray-300 whitespace-nowrap"><%= new Date(ev.timestamp).toLocaleString() %></td>
+                                <td class="py-3 px-4"><a href="/user/<%= ev.userId %>" class="text-blue-500 hover:underline"><%= ev.targetName || ev.userId %></a></td>
+                                <td class="py-3 px-4"><span class="px-2 py-1 rounded-lg text-xs bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300"><%= (ev.action || 'antiraid').replace(/^antiraid:/, '') %></span></td>
+                                <td class="py-3 px-4 text-gray-600 dark:text-gray-300"><%= ev.reason || '—' %></td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="4" class="py-8 text-center text-gray-400"><%= locale.dashboard.antiraid.noEvents %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<%- contentFor('body') %>
+
+<div class="space-y-6 p-4 md:p-6 animate-fade-in">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white"><%= locale.dashboard.automod.title %></h2>
+            <label class="switch-large">
+                <input type="checkbox" id="automodEnabled" <%= settings.automod?.enabled ? 'checked' : '' %>>
+                <span class="slider-large"></span>
+            </label>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg mb-6">
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Log Channel</label>
+                <select id="automodLogChannel" class="input-field">
+                    <option value=""><%= locale.dashboard.logs.selectChannel %></option>
+                    <% channels.forEach(channel => { %>
+                        <option value="<%= channel.id %>" <%= settings.automod?.logChannelId === channel.id ? 'selected' : '' %>>
+                            #<%= channel.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Staff Roles</label>
+                <select id="automodStaffRoles" class="input-field" multiple>
+                    <% roles.forEach(role => { %>
+                        <option value="<%= role.id %>" <%= (settings.automod?.staffRoles || []).includes(role.id) ? 'selected' : '' %>>
+                            <%= role.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="automodRulesGrid">
+            <% const ruleMeta = [
+                { key: 'spam', icon: 'fa-comment-dots' },
+                { key: 'duplicate', icon: 'fa-copy' },
+                { key: 'flood', icon: 'fa-water' },
+                { key: 'mentions', icon: 'fa-at' },
+                { key: 'caps', icon: 'fa-font' },
+                { key: 'emojis', icon: 'fa-smile' },
+                { key: 'links', icon: 'fa-link' },
+                { key: 'invites', icon: 'fa-envelope' },
+                { key: 'badWords', icon: 'fa-ban' }
+            ] %>
+            <% ruleMeta.forEach(meta => { %>
+                <% const rule = (settings.automod?.rules || {})[meta.key] || {} %>
+                <div class="automod-rule bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700" data-rule="<%= meta.key %>">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-9 h-9 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <i class="fas <%= meta.icon %>"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white capitalize"><%= meta.key %></h3>
+                        </div>
+                        <label class="switch-large">
+                            <input type="checkbox" class="rule-enabled" data-rule="<%= meta.key %>" <%= rule.enabled ? 'checked' : '' %>>
+                            <span class="slider-large"></span>
+                        </label>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Action</label>
+                            <select class="rule-action input-field" data-rule="<%= meta.key %>">
+                                <option value="delete" <%= rule.action === 'delete' ? 'selected' : '' %>>Delete</option>
+                                <option value="timeout" <%= rule.action === 'timeout' ? 'selected' : '' %>>Timeout</option>
+                                <option value="kick" <%= rule.action === 'kick' ? 'selected' : '' %>>Kick</option>
+                                <option value="ban" <%= rule.action === 'ban' ? 'selected' : '' %>>Ban</option>
+                                <option value="warn" <%= rule.action === 'warn' ? 'selected' : '' %>>Warn</option>
+                                <option value="none" <%= rule.action === 'none' ? 'selected' : '' %>>None</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Threshold</label>
+                                <input type="number" class="rule-threshold input-field" data-rule="<%= meta.key %>" min="1" value="<%= rule.threshold || 1 %>">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Window (ms)</label>
+                                <input type="number" class="rule-timeWindow input-field" data-rule="<%= meta.key %>" min="0" step="1000" value="<%= rule.timeWindow || 5000 %>">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Duration (ms)</label>
+                            <input type="number" class="rule-duration input-field" data-rule="<%= meta.key %>" min="0" step="1000" value="<%= rule.duration || 60000 %>">
+                        </div>
+                        <% if (meta.key === 'badWords') { %>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Words (comma separated)</label>
+                                <input type="text" class="rule-words input-field" data-rule="<%= meta.key %>" value="<%= (rule.words || []).join(', ') %>">
+                            </div>
+                        <% } %>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Reason</label>
+                            <input type="text" class="rule-reason input-field" data-rule="<%= meta.key %>" maxlength="300" value="<%= rule.reason || '' %>">
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class="flex justify-end mt-8">
+            <button id="saveAutomodSettings" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+                <i class="fas fa-save mr-2"></i><%= locale.dashboard.automod.save %>
+            </button>
+        </div>
+    </div>
+</div>

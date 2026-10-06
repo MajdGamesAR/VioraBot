@@ -1,0 +1,316 @@
+<%
+const isAr = currentLang === 'ar';
+const isAuthed = typeof isAuthenticated !== 'undefined' && isAuthenticated;
+const dashUrl = isAuthed ? '/dashboard' : '/auth/login';
+const Nav = {
+    features: isAr ? 'المميزات' : 'Features',
+    modules: isAr ? 'الوحدات' : 'Modules',
+    security: isAr ? 'الحماية' : 'Security',
+    premium: isAr ? 'المميز' : 'Premium'
+};
+%>
+
+<!-- Navigation -->
+<nav class="viora-landing-nav" id="landingNav">
+    <div class="viora-landing-navbar">
+        <a href="/" class="viora-landing-brand" aria-label="Viora">
+            <div class="viora-sb-mark">V</div>
+            <span class="viora-landing-brand-name">Viora</span>
+        </a>
+        <div class="viora-landing-links">
+            <a href="#features"><%= Nav.features %></a>
+            <a href="#modules"><%= Nav.modules %></a>
+            <a href="#security"><%= Nav.security %></a>
+            <a href="#premium"><%= Nav.premium %></a>
+            <a href="/docs"><%= isAr ? 'التوثيق' : 'Docs' %></a>
+        </div>
+        <div class="viora-landing-cta">
+            <a href="/auth/login" class="viora-btn viora-btn-ghost"><i class="fab fa-discord"></i> <%= isAr ? 'تسجيل الدخول' : 'Login' %></a>
+            <a href="<%= dashUrl %>" class="viora-btn viora-btn-primary"><i class="fas fa-rocket"></i> <%= isAr ? 'لوحة التحكم' : 'Launch Dashboard' %></a>
+            <button id="landingBurger" class="viora-landing-burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+    <div class="viora-landing-mobile" id="landingMobile">
+        <a href="#features"><%= Nav.features %></a>
+        <a href="#modules"><%= Nav.modules %></a>
+        <a href="#security"><%= Nav.security %></a>
+        <a href="#premium"><%= Nav.premium %></a>
+        <a href="/docs"><%= isAr ? 'التوثيق' : 'Docs' %></a>
+        <a href="/auth/login" style="margin-top:0.5rem"><i class="fab fa-discord"></i> <%= isAr ? 'تسجيل الدخول' : 'Login' %></a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<header class="viora-hero">
+    <span class="viora-eyebrow"><span class="pulse-dot"></span> <%= isAr ? 'محرك إشراف عصري لديسكورد' : 'Modern moderation engine for Discord' %></span>
+    <h1 class="viora-in">
+        <%= isAr ? 'تحكّم كامل بخادمك' : 'Take full control of your' %> <span class="grad-text"><%= isAr ? 'خادم ديسكورد' : 'Discord server' %></span>
+    </h1>
+    <p class="lead viora-in d1">
+        <%= isAr
+            ? 'Viora تحمي مجتمعك على مدار الساعة من الهجمات والبريد العشوائي، وتؤتمت الإشراف، وتقدّم لوحة تحكم أنيقة وسريعة — كل شيء في مكان واحد.'
+            : 'Viora guards your community around the clock against raids and spam, automates moderation, and gives you a sleek, fast dashboard — everything in one place.' %>
+    </p>
+    <div class="viora-hero-ctas viora-in d2">
+        <a href="<%= dashUrl %>" class="viora-btn viora-btn-primary"><i class="fas fa-rocket"></i> <%= isAr ? 'ابدأ الآن' : 'Launch Dashboard' %></a>
+        <a href="#modules" class="viora-btn viora-btn-ghost"><i class="fas fa-th-large"></i> <%= isAr ? 'تصفّح الوحدات' : 'Explore the modules' %></a>
+    </div>
+    <div class="viora-hero-stats viora-in d3">
+        <div class="viora-hero-stat"><strong>24/7</strong><span><%= isAr ? 'حماية فورية' : 'Real-time protection' %></span></div>
+        <div class="viora-hero-stat"><strong>12+</strong><span><%= isAr ? 'وحدات قوية' : 'Powerful modules' %></span></div>
+        <div class="viora-hero-stat"><strong>2</strong><span><%= isAr ? 'لغات: عربي / إنجليزي' : 'Languages: EN / AR' %></span></div>
+    </div>
+
+    <div class="viora-preview-wrap viora-in d4">
+        <div class="viora-preview viora-float">
+            <div class="viora-preview-top">
+                <span class="tp-dot"></span><span class="tp-dot"></span><span class="tp-dot"></span>
+            </div>
+            <div class="viora-preview-grid">
+                <div class="viora-preview-side">
+                    <div class="viora-preview-term on"></div>
+                    <div class="viora-preview-term off"></div>
+                    <div class="viora-preview-term off2"></div>
+                    <div class="viora-preview-term off"></div>
+                </div>
+                <div class="viora-preview-main">
+                    <div class="viora-preview-cards">
+                        <div class="viora-preview-card"><div class="lbl"><%= isAr ? 'إجراءات اليوم' : 'Today' %></div><div class="num">128</div></div>
+                        <div class="viora-preview-card"><div class="lbl"><%= isAr ? 'تحذيرات' : 'Warnings' %></div><div class="num">43</div></div>
+                        <div class="viora-preview-card"><div class="lbl"><%= isAr ? 'تذاكر مفتوحة' : 'Tickets' %></div><div class="num">12</div></div>
+                        <div class="viora-preview-card"><div class="lbl"><%= isAr ? 'الطلبات' : 'Apply' %></div><div class="num">7</div></div>
+                    </div>
+                    <div class="viora-preview-chart">
+                        <div class="bar" style="height:38%"></div>
+                        <div class="bar" style="height:56%"></div>
+                        <div class="bar" style="height:42%"></div>
+                        <div class="bar" style="height:74%"></div>
+                        <div class="bar" style="height:51%"></div>
+                        <div class="bar" style="height:88%"></div>
+                        <div class="bar" style="height:64%"></div>
+                        <div class="bar" style="height:32%"></div>
+                        <div class="bar" style="height:70%"></div>
+                        <div class="bar" style="height:46%"></div>
+                        <div class="bar" style="height:82%"></div>
+                        <div class="bar" style="height:58%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Features -->
+<section class="viora-section" id="features">
+    <div class="viora-section-head">
+        <span class="viora-split-label"><%= isAr ? 'لماذا Viora؟' : 'Why Viora?' %></span>
+        <h2><%= isAr ? 'كل ما يحتاجه مشرف ديسكورد محترف' : 'Everything a serious moderator needs' %></h2>
+        <p><%= isAr ? 'مجموعة إشراف متكاملة مبنيّة لتكون سريعة، آمنة، وأنيقة — من الحماية التلقائية حتى بطاقات الترحيب.' : 'A complete moderation suite built to be fast, secure and beautiful — from automatic protection to custom welcome cards.' %></p>
+    </div>
+    <div class="viora-feature-grid">
+        <div class="viora-feature">
+            <div class="viora-feature-icon"><i class="fas fa-shield-halved"></i></div>
+            <h3><%= isAr ? 'حماية فورية' : 'Real-time protection' %></h3>
+            <p><%= isAr ? 'اكتشاف تلقائي للهجمات والبريد العشوائي مع ردود فورية — رفع الحماية، الطرد، أو إزالة الصلاحيات.' : 'Automatic raid and spam detection with instant responses — lockdown, kicks, or role stripping.' %></p>
+        </div>
+        <div class="viora-feature">
+            <div class="viora-feature-icon"><i class="fas fa-robot"></i></div>
+            <h3><%= isAr ? 'إشراف ذكي' : 'Smart AutoMod' %></h3>
+            <p><%= isAr ? 'قواعد مرنة تكشف الرسائل المكررة، الروابط، الإشارات، الحروف الكبيرة والمزيد — أوقفها قبل أن تبدأ.' : 'Flexible rules catch spam, links, mentions, caps and more — stop trouble before it starts.' %></p>
+        </div>
+        <div class="viora-feature">
+            <div class="viora-feature-icon"><i class="fas fa-ticket"></i></div>
+            <h3><%= isAr ? 'نظام تذاكر' : 'Ticket system' %></h3>
+            <p><%= isAr ? 'تذاكر مخصصة بأقسام متعددة وصلاحيات إدارة دقيقة لحجز المساعدة والدعم داخل خادمك.' : 'Custom tickets with multiple sections and fine-grained staff permissions for support.' %></p>
+        </div>
+        <div class="viora-feature">
+            <div class="viora-feature-icon"><i class="fas fa-gift"></i></div>
+            <h3><%= isAr ? 'هدايا تفاعلية' : 'Interactive giveaways' %></h3>
+            <p><%= isAr ? 'هدايا بلوحات تحكم ومؤقّتات وشروط مخصصة — بدون أي كود معقّد.' : 'Giveaways with dashboards, countdowns and custom requirements — no complicated commands.' %></p>
+        </div>
+        <div class="viora-feature">
+            <div class="viora-feature-icon"><i class="fas fa-user-plus"></i></div>
+            <h3><%= isAr ? 'طلبات التقديم' : 'Applications & staff' %></h3>
+            <p><%= isAr ? 'نماذج تقديم متعددة للوظائف، مع إدارة استقبال وقبول مباشرة من لوحة التحكم.' : 'Multi-position application forms with accept and manage flows straight from the dashboard.' %></p>
+        </div>
+        <div class="viora-feature">
+            <div class="viora-feature-icon"><i class="fas fa-hand-wave"></i></div>
+            <h3><%= isAr ? 'بطاقات ترحيب' : 'Welcome cards' %></h3>
+            <p><%= isAr ? 'بطاقات ترحيب ووداع مخصصة بخلفيات شفافة أو صور، ومعاينة فورية وسحابة قوالب.' : 'Custom welcome and goodbye cards with transparent or image backgrounds, live preview and templates.' %></p>
+        </div>
+    </div>
+</section>
+
+<!-- Modules -->
+<section class="viora-section" id="modules">
+    <div class="viora-section-head">
+        <span class="viora-split-label"><%= isAr ? 'الوحدات' : 'Modules' %></span>
+        <h2><%= isAr ? 'لوحة تحكم واحدة تفعل كل شيء' : 'One dashboard, every module' %></h2>
+        <p><%= isAr ? 'شغّل ما تحتاجه فقط — كل وحدة مستقلة، سريعة التفعيل، ومتزامنة مع أذونات فريقك.' : 'Enable only what you need — every module is independent, quick to set up, and honors your staff roles.' %></p>
+    </div>
+    <div class="viora-module-grid">
+        <div class="viora-module"><i class="fas fa-shield-halved"></i><span><%= isAr ? 'الحماية' : 'Protection' %></span></div>
+        <div class="viora-module"><i class="fas fa-robot"></i><span><%= isAr ? 'أوتو مود' : 'AutoMod' %></span></div>
+        <div class="viora-module"><i class="fas fa-clock-rotate-left"></i><span><%= isAr ? 'السجلات' : 'Logs' %></span></div>
+        <div class="viora-module"><i class="fas fa-gavel"></i><span><%= isAr ? 'القوانين' : 'Rules' %></span></div>
+        <div class="viora-module"><i class="fas fa-ticket"></i><span><%= isAr ? 'التذاكر' : 'Tickets' %></span></div>
+        <div class="viora-module"><i class="fas fa-lightbulb"></i><span><%= isAr ? 'الاقتراحات' : 'Suggestions' %></span></div>
+        <div class="viora-module"><i class="fas fa-user-plus"></i><span><%= isAr ? 'التقديم' : 'Applications' %></span></div>
+        <div class="viora-module"><i class="fas fa-gift"></i><span><%= isAr ? 'الهدايا' : 'Giveaways' %></span></div>
+        <div class="viora-module"><i class="fas fa-microphone-lines"></i><span><%= isAr ? 'القنوات المؤقتة' : 'Temp channels' %></span></div>
+        <div class="viora-module"><i class="fas fa-reply-all"></i><span><%= isAr ? 'الرد التلقائي' : 'Auto reply' %></span></div>
+        <div class="viora-module"><i class="fas fa-hand-wave"></i><span><%= isAr ? 'الترحيب' : 'Welcome / Goodbye' %></span></div>
+        <div class="viora-module"><i class="fas fa-terminal"></i><span><%= isAr ? 'الأوامر' : 'Commands' %></span></div>
+    </div>
+</section>
+
+<!-- Security -->
+<section class="viora-section" id="security">
+    <div class="viora-split">
+        <div class="viora-split-visual">
+            <div class="viora-panel" style="padding:2rem">
+                <div class="viora-feature-icon" style="margin-bottom:1.2rem"><i class="fas fa-shield-halved"></i></div>
+                <div class="viora-preview-term on" style="width:55%"></div>
+                <div class="viora-preview-term off" style="margin-bottom:0.4rem"></div>
+                <div class="viora-preview-chart" style="margin-top:1.2rem;height:7rem">
+                    <div class="bar" style="height:28%"></div>
+                    <div class="bar" style="height:52%"></div>
+                    <div class="bar" style="height:40%"></div>
+                    <div class="bar" style="height:85%"></div>
+                    <div class="bar" style="height:61%"></div>
+                    <div class="bar" style="height:74%"></div>
+                    <div class="bar" style="height:46%"></div>
+                    <div class="bar" style="height:38%"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <span class="viora-split-label"><%= isAr ? 'الحماية' : 'Security' %></span>
+            <h2><%= isAr ? 'درع حماية يعمل تلقائياً' : 'A shield that never sleeps' %></h2>
+            <p><%= isAr ? 'Viora يراقب خادمك باستمرار ويتدخل عند أول إشارة خطر — بدون أي تدخل يدوي منك.' : 'Viora constantly monitors your server and steps in at the first sign of danger — no manual babysitting.' %></p>
+            <ul class="viora-check-list">
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'حماية من الهجمات الجماعية وإزالة الصلاحيات الحساسة' : 'Anti-raid & anti-nuke with role stripping' %></li>
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'حماية حماية القنوات والرتب وسجل تعديلات كامل' : 'Channel & role protection with full mutation logs' %></li>
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'أذونات دقيقة لأعضاء الفريق مع قائمة محظورة' : 'Granular staff permissions with allow/deny lists' %></li>
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'كشف البوتات والروابط والرسائل المكررة بسرعة' : 'Bot, URL & duplicate-message detection done fast' %></li>
+            </ul>
+            <a href="/protection" class="viora-btn viora-btn-ghost"><i class="fas fa-shield-halved"></i> <%= isAr ? 'اطّلع على الحماية' : 'See protection settings' %></a>
+        </div>
+    </div>
+</section>
+
+<!-- Customization -->
+<section class="viora-section" id="customization">
+    <div class="viora-split">
+        <div>
+            <span class="viora-split-label"><%= isAr ? 'التخصيص' : 'Customization' %></span>
+            <h2><%= isAr ? 'بطاقات ترحيب بحجم البكسل' : 'Pixel-perfect welcome cards' %></h2>
+            <p><%= isAr ? 'أضف أعضاءك وخلفيات شفافة أو صور، وحرّك وصغّر وضمّن النصوص — واعاين النتيجة مباشرة قبل الحفظ.' : 'Drop in avatars, transparent or image backgrounds, drag, resize and layer text — and preview the result before you save.' %></p>
+            <ul class="viora-check-list">
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'سحب وإفلات، تغيير الحجم والطبقات' : 'Drag & drop, resize and layering' %></li>
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'خلفيات شفافة، ألوان، صور، وقوالب جاهزة' : 'Transparent, color, image backgrounds & templates' %></li>
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'متغيرات: المستخدم، العدد، والخادم' : 'Variables: user, count and server' %></li>
+                <li><i class="fas fa-circle-check"></i><%= isAr ? 'معاينة فورية وإرسال تجريبي' : 'Instant preview and test send' %></li>
+            </ul>
+            <a href="<%= dashUrl %>" class="viora-btn viora-btn-primary"><i class="fas fa-wand-magic-sparkles"></i> <%= isAr ? 'جرّبه الآن' : 'Try the editor' %></a>
+        </div>
+        <div class="viora-split-visual">
+            <div class="viora-panel" style="padding:1.4rem">
+                <div class="viora-preview" style="box-shadow:none">
+                    <div style="height:9.5rem;border-radius:0.9rem;margin-bottom:1.1rem;background:linear-gradient(135deg,#5B21B6,#A855F7);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">
+                        <span>Viora · <%= isAr ? 'ترحيب جديد' : 'Welcome card' %></span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.9rem">
+                        <div style="width:3.4rem;height:3.4rem;border-radius:50%;background-image:var(--viora-grad);border:3px solid var(--viora-border-strong)"></div>
+                        <div>
+                            <div class="viora-preview-term on" style="width:9rem"></div>
+                            <div class="viora-preview-term off" style="width:13rem"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium -->
+<section class="viora-section" id="premium">
+    <div class="viora-cta">
+        <span class="viora-eyebrow"><i class="fas fa-gem"></i> <%= isAr ? 'Viora Pro' : 'Viora Pro' %></span>
+        <h2><%= isAr ? 'عزّز إشرافك للمستوى التالي' : 'Take your moderation to the next level' %></h2>
+        <p><%= isAr ? 'وحدات متقدمة، أولوية دعم، والمزيد — مصمّم للمجتمعات التي تكبر بسرعة.' : 'Advanced modules, priority support and more — built for communities scaling fast.' %></p>
+        <a href="/auth/login" class="viora-btn viora-btn-primary"><i class="fas fa-gem"></i> <%= isAr ? 'اكتشف Viora Pro' : 'Discover Viora Pro' %></a>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="viora-section" style="padding-top:1rem">
+    <div class="viora-cta">
+        <h2><%= isAr ? 'جاهز تتحكم في خادمك؟' : 'Ready to take control of your server?' %></h2>
+        <p><%= isAr ? 'انضم الآن وابني بيئة آمنة ومنظمة ومنسجمة مع مجتمعك — ابدأ في أقل من دقيقة.' : 'Join now and build a safe, organized and welcoming space for your community — up and running in under a minute.' %></p>
+        <a href="<%= dashUrl %>" class="viora-btn viora-btn-primary"><i class="fab fa-discord"></i> <%= isAr ? 'ابدأ الآن' : 'Get started' %></a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="viora-landing-footer">
+    <div class="viora-landing-footer-inner">
+        <div>
+            <a href="/" class="viora-landing-brand">
+                <div class="viora-sb-mark">V</div>
+                <span class="viora-landing-brand-name">Viora</span>
+            </a>
+            <p class="brand-copy"><%= isAr ? 'منظومة إشراف حديثة لديسكورد — حماية، أتمتة، ولوحة تحكم أنيقة لمجتمعك.' : 'A modern moderation platform for Discord — protection, automation and a beautiful dashboard for your community.' %></p>
+        </div>
+        <div>
+            <h4><%= isAr ? 'المنتج' : 'Product' %></h4>
+            <ul>
+                <li><a href="#features"><%= Nav.features %></a></li>
+                <li><a href="#modules"><%= Nav.modules %></a></li>
+                <li><a href="#security"><%= Nav.security %></a></li>
+                <li><a href="#premium"><%= Nav.premium %></a></li>
+            </ul>
+        </div>
+        <div>
+            <h4><%= isAr ? 'الوصول' : 'Access' %></h4>
+            <ul>
+                <li><a href="/dashboard"><%= isAr ? 'لوحة التحكم' : 'Dashboard' %></a></li>
+                <li><a href="/auth/login"><%= isAr ? 'تسجيل الدخول' : 'Login' %></a></li>
+                <li><a href="/docs"><%= isAr ? 'التوثيق' : 'Documentation' %></a></li>
+                <li><a href="/commands"><%= isAr ? 'الأوامر' : 'Commands' %></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom">
+        <span>© 2026 Viora — <%= isAr ? 'صُنع لمجتمعات ديسكورد' : 'Made for Discord communities' %></span>
+        <div class="socials">
+            <a href="https://github.com/wickstudio" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/@wick_studio" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mik__subhi/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://discord.gg/z82w57MzUC" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    (function () {
+        var nav = document.getElementById('landingNav');
+        var burger = document.getElementById('landingBurger');
+        var mobile = document.getElementById('landingMobile');
+
+        function onScroll() {
+            if (nav) {
+                nav.classList.toggle('scrolled', window.scrollY > 12);
+            }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        if (burger && mobile) {
+            burger.addEventListener('click', function () {
+                var open = mobile.classList.toggle('open');
+                burger.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+        }
+    })();
+</script>

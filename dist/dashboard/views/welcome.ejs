@@ -1,0 +1,351 @@
+<% const wg = locale.dashboard.welcomeGoodbye; const wgJsonSafe = (x) => JSON.stringify(x).replace(/</g, '\\u003c');
+    const wgChannels = typeof channels !== 'undefined' && Array.isArray(channels) ? channels : [];
+    const wgChannelOptions = (selectedId) => wgChannels.map((ch) => {
+        const esc = String(ch.id).replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
+        const name = String(ch.name).replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
+        return `<option value="${esc}"${selectedId === ch.id ? ' selected' : ''}>#${name}</option>`;
+    }).join(''); %>
+<div class="space-y-6">
+    <div class="viora-panel p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white"><%= wg.title %></h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"><%= wg.subtitle %></p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="wg-system-status" class="viora-chip">
+                    <span class="h-2.5 w-2.5 rounded-full <%= settings.welcomeGoodbye?.enabled ? 'bg-emerald-400' : 'bg-red-400' %>"></span>
+                    <%= settings.welcomeGoodbye?.enabled ? wg.on : wg.off %>
+                </span>
+                <label class="switch-large">
+                    <input type="checkbox" id="wg-enabled" <%= settings.welcomeGoodbye?.enabled ? 'checked' : '' %>>
+                    <span class="slider-large"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+
+        <div class="space-y-6">
+<div class="viora-panel p-6">
+                    <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="section-icon"><i class="fas fa-hand-wave"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 dark:text-white"><%= wg.welcome.title %></h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400"><%= wg.welcome.subtitle %></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="button" class="viora-btn" id="wg-welcome-test-btn"><i class="fas fa-flask"></i> <%= wg.welcome.testButton %></button>
+                            <label class="switch-large"><input type="checkbox" id="wg-welcome-message-enable"><span class="slider-large"></span></label>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-sm font-medium text-gray-700 dark:text-gray-300" for="wg-welcome-message-content"><%= wg.welcome.contentLabel %></label>
+                                <span class="text-xs text-gray-400"><span id="wg-welcome-message-counter">0</span>/2000</span>
+                            </div>
+                            <textarea id="wg-welcome-message-content" class="viora-input" rows="3" maxlength="2000" placeholder="<%= wg.welcome.contentHint %>"></textarea>
+                            <div class="mt-2">
+                                <div class="flex flex-wrap gap-2 wg-var-row" data-section="welcome" data-var-title="<%= wg.variables.title %>"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= wg.welcome.deliveryLabel %></label>
+                            <div class="flex flex-wrap gap-4">
+                                <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <input type="radio" name="wg-welcome-message-delivery" value="dm" checked> <%= wg.welcome.deliveryDm %>
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <input type="radio" name="wg-welcome-message-delivery" value="channel"> <%= wg.welcome.deliveryChannel %>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="wg-message-channel-wrap hidden">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="wg-welcome-message-channel"><%= wg.welcome.channelLabel %></label>
+                            <select id="wg-welcome-message-channel" class="viora-select"><option value=""><%= wg.image.selectChannel %></option><%- wgChannelOptions(settings.welcomeGoodbye?.welcome?.message?.channelId || '') %></select>
+                        </div>
+                    </div>
+                </div>
+
+<div class="viora-panel p-6">
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="section-icon"><i class="fas fa-image"></i></div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white"><%= wg.image.title %></h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400"><%= wg.image.subtitle %></p>
+                        </div>
+                    </div>
+                    <label class="switch-large"><input type="checkbox" id="wg-welcome-image-enable"><span class="slider-large"></span></label>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= wg.image.deliveryLabel %></label>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"><input type="radio" name="wg-welcome-image-delivery" value="withMessage" checked> <%= wg.image.deliveryWithText %></label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"><input type="radio" name="wg-welcome-image-delivery" value="beforeMessage"> <%= wg.image.deliveryBeforeText %></label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"><input type="radio" name="wg-welcome-image-delivery" value="channel"> <%= wg.image.deliveryChannel %></label>
+                        </div>
+                    </div>
+                    <div class="wg-image-channel-wrap hidden">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="wg-welcome-image-channel"><%= wg.image.channelLabel %></label>
+                        <select id="wg-welcome-image-channel" class="viora-select"><option value=""><%= wg.image.selectChannel %></option><%- wgChannelOptions(settings.welcomeGoodbye?.welcome?.image?.channelId || '') %></select>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-900 p-4">
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                            <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300"><%= wg.image.previewTitle %></h4>
+                            <div class="flex flex-wrap gap-2">
+                                <select id="wg-welcome-template-select" class="viora-select text-sm w-auto">
+                                    <option value=""><%= wg.image.useTemplate %></option>
+                                </select>
+                                <button type="button" class="reset-button" id="wg-welcome-use-template"><%= wg.image.useTemplate %></button>
+                                <button type="button" class="reset-button" id="wg-welcome-create-template"><%= wg.image.createTemplate %></button>
+                                <button type="button" class="reset-button" id="wg-welcome-template-gallery-btn"><i class="fas fa-images"></i> <%= wg.image.templatesGallery %></button>
+                                <button type="button" class="reset-button" id="wg-welcome-refresh"><i class="fas fa-sync-alt"></i> <%= wg.image.refreshPreview %></button>
+                            </div>
+                        </div>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                            <div class="wg-editor-toolbar flex flex-wrap items-center justify-between gap-2 px-2 py-1.5 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                                <div class="flex items-center gap-1">
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-zoom-out" title="<%= wg.image.zoomOut %>"><i class="fas fa-search-minus"></i></button>
+                                    <span class="wg-zoom-label" id="wg-welcome-zoom-label">Fit</span>
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-zoom-in" title="<%= wg.image.zoomIn %>"><i class="fas fa-search-plus"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-zoom-fit" title="<%= wg.image.zoomFit %>"><i class="fas fa-expand-arrows-alt"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-match-bg" title="<%= wg.image.matchBackground %>"><i class="fas fa-ruler-combined"></i></button>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-layer-up" title="<%= wg.image.layerForward %>"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-layer-down" title="<%= wg.image.layerBackward %>"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-welcome-verify-btn" title="<%= wg.image.verifyRender %>"><i class="fas fa-server"></i></button>
+                                </div>
+                            </div>
+                            <div class="wg-canvas-stage" id="wg-welcome-stage">
+                                <div class="wg-canvas-zoom" id="wg-welcome-zoom">
+                                    <canvas id="wg-welcome-canvas" class="wg-canvas"></canvas>
+                                    <div class="wg-canvas-empty hidden" id="wg-welcome-empty"><%= wg.image.noBackground %></div>
+                                </div>
+                            </div>
+                        </div>
+                        <details class="wg-advanced mt-2" id="wg-welcome-adv">
+                            <summary class="text-sm font-medium text-gray-600 dark:text-gray-300 cursor-pointer select-none"><i class="fas fa-sliders-h"></i> <%= wg.image.advancedPositioning %></summary>
+                            <div class="field-grid mt-2">
+                                <div class="field"><label for="wg-welcome-adv-avatar-x"><%= wg.image.avatar.x %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-avatar-x" data-section="avatar" data-key="x"></div>
+                                <div class="field"><label for="wg-welcome-adv-avatar-y"><%= wg.image.avatar.y %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-avatar-y" data-section="avatar" data-key="y"></div>
+                                <div class="field"><label for="wg-welcome-adv-avatar-width"><%= wg.image.avatar.width %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-avatar-width" data-section="avatar" data-key="width"></div>
+                                <div class="field"><label for="wg-welcome-adv-avatar-height"><%= wg.image.avatar.height %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-avatar-height" data-section="avatar" data-key="height"></div>
+                                <div class="field"><label for="wg-welcome-adv-avatar-scale"><%= wg.image.avatar.scale %></label><input type="number" step="0.05" class="viora-input" id="wg-welcome-adv-avatar-scale" data-section="avatar" data-key="scale"></div>
+                                <div class="field"><label for="wg-welcome-adv-username-x"><%= wg.image.username.x %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-username-x" data-section="username" data-key="x"></div>
+                                <div class="field"><label for="wg-welcome-adv-username-y"><%= wg.image.username.y %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-username-y" data-section="username" data-key="y"></div>
+                                <div class="field"><label for="wg-welcome-adv-username-fontSize"><%= wg.image.username.fontSize %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-username-fontSize" data-section="username" data-key="fontSize"></div>
+                                <div class="field"><label for="wg-welcome-adv-text-x"><%= wg.image.text.x %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-text-x" data-section="text" data-key="x"></div>
+                                <div class="field"><label for="wg-welcome-adv-text-y"><%= wg.image.text.y %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-text-y" data-section="text" data-key="y"></div>
+                                <div class="field"><label for="wg-welcome-adv-text-fontSize"><%= wg.image.text.fontSize %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-text-fontSize" data-section="text" data-key="fontSize"></div>
+                                <div class="field"><label for="wg-welcome-adv-bg-positionX"><%= wg.image.background.positionX %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-bg-positionX" data-section="background" data-key="positionX"></div>
+                                <div class="field"><label for="wg-welcome-adv-bg-positionY"><%= wg.image.background.positionY %></label><input type="number" step="1" class="viora-input" id="wg-welcome-adv-bg-positionY" data-section="background" data-key="positionY"></div>
+                                <div class="field"><label for="wg-welcome-adv-bg-scale"><%= wg.image.background.scale %></label><input type="number" step="0.05" class="viora-input" id="wg-welcome-adv-bg-scale" data-section="background" data-key="scale"></div>
+                            </div>
+                        </details>
+                        <div class="mt-2 hidden" id="wg-welcome-verify-wrap">
+                            <img id="wg-welcome-verify-img" alt="<%= wg.image.verifyRender %>" class="w-full h-auto block rounded-lg border border-gray-200 dark:border-gray-700">
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"><%= wg.image.previewHint %></p>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-900 p-4">
+                        <div class="editor-tabs" id="wg-editor-tabs-welcome"></div>
+                        <div class="mt-4" id="wg-editor-panels-welcome"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon"><i class="fas fa-door-open"></i></div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 dark:text-white"><%= wg.goodbye.title %></h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400"><%= wg.goodbye.subtitle %></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button type="button" class="reset-button" id="wg-goodbye-test-btn"><i class="fas fa-flask"></i> <%= wg.goodbye.testButton %></button>
+                        <label class="switch-large"><input type="checkbox" id="wg-goodbye-message-enable"><span class="slider-large"></span></label>
+                    </div>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300" for="wg-goodbye-message-content"><%= wg.goodbye.contentLabel %></label>
+                            <span class="text-xs text-gray-400"><span id="wg-goodbye-message-counter">0</span>/2000</span>
+                        </div>
+                        <textarea id="wg-goodbye-message-content" class="viora-input" rows="3" maxlength="2000" placeholder="<%= wg.goodbye.contentHint %>"></textarea>
+                        <div class="mt-2">
+                            <div class="flex flex-wrap gap-2 wg-var-row" data-section="goodbye" data-var-title="<%= wg.variables.title %>"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="wg-goodbye-message-channel"><%= wg.goodbye.channelLabel %></label>
+                        <select id="wg-goodbye-message-channel" class="input-field"><option value=""><%= wg.image.selectChannel %></option><%- wgChannelOptions(settings.welcomeGoodbye?.goodbye?.message?.channelId || '') %></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="section-icon"><i class="fas fa-portrait"></i></div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 dark:text-white"><%= wg.goodbyeImage.title %></h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400"><%= wg.goodbyeImage.subtitle %></p>
+                        </div>
+                    </div>
+                    <label class="switch-large"><input type="checkbox" id="wg-goodbye-image-enable"><span class="slider-large"></span></label>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><%= wg.image.deliveryLabel %></label>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"><input type="radio" name="wg-goodbye-image-delivery" value="withMessage" checked> <%= wg.image.deliveryWithText %></label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"><input type="radio" name="wg-goodbye-image-delivery" value="beforeMessage"> <%= wg.image.deliveryBeforeText %></label>
+                            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"><input type="radio" name="wg-goodbye-image-delivery" value="channel"> <%= wg.image.deliveryChannel %></label>
+                        </div>
+                    </div>
+                    <div class="wg-image-channel-wrap hidden">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="wg-goodbye-image-channel"><%= wg.image.channelLabel %></label>
+                        <select id="wg-goodbye-image-channel" class="input-field"><option value=""><%= wg.image.selectChannel %></option><%- wgChannelOptions(settings.welcomeGoodbye?.goodbye?.image?.channelId || '') %></select>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-900 p-4">
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                            <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300"><%= wg.image.previewTitle %></h4>
+                            <div class="flex flex-wrap gap-2">
+                                <select id="wg-goodbye-template-select" class="input-field text-sm w-auto">
+                                    <option value=""><%= wg.image.useTemplate %></option>
+                                </select>
+                                <button type="button" class="reset-button" id="wg-goodbye-use-template"><%= wg.image.useTemplate %></button>
+                                <button type="button" class="reset-button" id="wg-goodbye-create-template"><%= wg.image.createTemplate %></button>
+                                <button type="button" class="reset-button" id="wg-goodbye-template-gallery-btn"><i class="fas fa-images"></i> <%= wg.image.templatesGallery %></button>
+                                <button type="button" class="reset-button" id="wg-goodbye-refresh"><i class="fas fa-sync-alt"></i> <%= wg.image.refreshPreview %></button>
+                            </div>
+                        </div>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                            <div class="wg-editor-toolbar flex flex-wrap items-center justify-between gap-2 px-2 py-1.5 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                                <div class="flex items-center gap-1">
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-zoom-out" title="<%= wg.image.zoomOut %>"><i class="fas fa-search-minus"></i></button>
+                                    <span class="wg-zoom-label" id="wg-goodbye-zoom-label">Fit</span>
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-zoom-in" title="<%= wg.image.zoomIn %>"><i class="fas fa-search-plus"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-zoom-fit" title="<%= wg.image.zoomFit %>"><i class="fas fa-expand-arrows-alt"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-match-bg" title="<%= wg.image.matchBackground %>"><i class="fas fa-ruler-combined"></i></button>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-layer-up" title="<%= wg.image.layerForward %>"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-layer-down" title="<%= wg.image.layerBackward %>"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" class="wg-tool-btn" id="wg-goodbye-verify-btn" title="<%= wg.image.verifyRender %>"><i class="fas fa-server"></i></button>
+                                </div>
+                            </div>
+                            <div class="wg-canvas-stage" id="wg-goodbye-stage">
+                                <div class="wg-canvas-zoom" id="wg-goodbye-zoom">
+                                    <canvas id="wg-goodbye-canvas" class="wg-canvas"></canvas>
+                                    <div class="wg-canvas-empty hidden" id="wg-goodbye-empty"><%= wg.image.noBackground %></div>
+                                </div>
+                            </div>
+                        </div>
+                        <details class="wg-advanced mt-2" id="wg-goodbye-adv">
+                            <summary class="text-sm font-medium text-gray-600 dark:text-gray-300 cursor-pointer select-none"><i class="fas fa-sliders-h"></i> <%= wg.image.advancedPositioning %></summary>
+                            <div class="field-grid mt-2">
+                                <div class="field"><label for="wg-goodbye-adv-avatar-x"><%= wg.image.avatar.x %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-avatar-x" data-section="avatar" data-key="x"></div>
+                                <div class="field"><label for="wg-goodbye-adv-avatar-y"><%= wg.image.avatar.y %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-avatar-y" data-section="avatar" data-key="y"></div>
+                                <div class="field"><label for="wg-goodbye-adv-avatar-width"><%= wg.image.avatar.width %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-avatar-width" data-section="avatar" data-key="width"></div>
+                                <div class="field"><label for="wg-goodbye-adv-avatar-height"><%= wg.image.avatar.height %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-avatar-height" data-section="avatar" data-key="height"></div>
+                                <div class="field"><label for="wg-goodbye-adv-avatar-scale"><%= wg.image.avatar.scale %></label><input type="number" step="0.05" class="viora-input" id="wg-goodbye-adv-avatar-scale" data-section="avatar" data-key="scale"></div>
+                                <div class="field"><label for="wg-goodbye-adv-username-x"><%= wg.image.username.x %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-username-x" data-section="username" data-key="x"></div>
+                                <div class="field"><label for="wg-goodbye-adv-username-y"><%= wg.image.username.y %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-username-y" data-section="username" data-key="y"></div>
+                                <div class="field"><label for="wg-goodbye-adv-username-fontSize"><%= wg.image.username.fontSize %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-username-fontSize" data-section="username" data-key="fontSize"></div>
+                                <div class="field"><label for="wg-goodbye-adv-text-x"><%= wg.image.text.x %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-text-x" data-section="text" data-key="x"></div>
+                                <div class="field"><label for="wg-goodbye-adv-text-y"><%= wg.image.text.y %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-text-y" data-section="text" data-key="y"></div>
+                                <div class="field"><label for="wg-goodbye-adv-text-fontSize"><%= wg.image.text.fontSize %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-text-fontSize" data-section="text" data-key="fontSize"></div>
+                                <div class="field"><label for="wg-goodbye-adv-bg-positionX"><%= wg.image.background.positionX %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-bg-positionX" data-section="background" data-key="positionX"></div>
+                                <div class="field"><label for="wg-goodbye-adv-bg-positionY"><%= wg.image.background.positionY %></label><input type="number" step="1" class="viora-input" id="wg-goodbye-adv-bg-positionY" data-section="background" data-key="positionY"></div>
+                                <div class="field"><label for="wg-goodbye-adv-bg-scale"><%= wg.image.background.scale %></label><input type="number" step="0.05" class="viora-input" id="wg-goodbye-adv-bg-scale" data-section="background" data-key="scale"></div>
+                            </div>
+                        </details>
+                        <div class="mt-2 hidden" id="wg-goodbye-verify-wrap">
+                            <img id="wg-goodbye-verify-img" alt="<%= wg.image.verifyRender %>" class="w-full h-auto block rounded-lg border border-gray-200 dark:border-gray-700">
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"><%= wg.image.previewHint %></p>
+                    </div>
+                    <div class="rounded-lg bg-gray-50 dark:bg-gray-900 p-4">
+                        <div class="editor-tabs" id="wg-editor-tabs-goodbye"></div>
+                        <div class="mt-4" id="wg-editor-panels-goodbye"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="save-bar" id="saveBar">
+        <div class="save-bar-content">
+            <div class="save-bar-text">
+                <i class="fas fa-info-circle"></i>
+                <span><%= wg.unsavedChanges %></span>
+            </div>
+            <div class="save-bar-buttons">
+                <button class="reset-button" id="wg-reset"><i class="fas fa-undo"></i> <%= wg.resetDefaults %></button>
+                <button class="save-button" id="wg-save"><i class="fas fa-save"></i> <%= wg.saveChanges %></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="wgTestModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white"><%= wg.testResult.title %></h3>
+            <button type="button" id="wg-test-close" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl leading-none">&times;</button>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+            <select id="wg-test-member" class="input-field text-sm w-auto" aria-label="<%= wg.testResult.memberLabel %>"></select>
+            <button type="button" class="reset-button" id="wg-test-run"><i class="fas fa-play"></i> <%= wg.testResult.runTest %></button>
+        </div>
+        <div class="text-sm text-gray-500 dark:text-gray-400 mb-3"><span id="wg-test-used-label"></span></div>
+        <div class="mb-3">
+            <div class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-1"><%= wg.testResult.textLabel %></div>
+            <div id="wg-test-text" class="p-3 bg-gray-100 dark:bg-gray-900 rounded-lg whitespace-pre-wrap break-words text-gray-800 dark:text-gray-200"></div>
+        </div>
+        <div>
+            <div class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-1"><%= wg.testResult.imageLabel %></div>
+            <img id="wg-test-image" alt="<%= wg.testResult.imageLabel %>" class="w-full rounded-lg border border-gray-200 dark:border-gray-700 hidden">
+            <div id="wg-test-noimage" class="p-3 bg-gray-100 dark:bg-gray-900 rounded-lg text-sm text-gray-500"><%= wg.testResult.noImage %></div>
+        </div>
+    </div>
+</div>
+
+<div id="wgTemplateModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-4xl max-h-[90vh] flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white"><i class="fas fa-images"></i> <%= wg.image.templatesTitle %></h3>
+            <button type="button" id="wg-template-modal-close" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl leading-none">&times;</button>
+        </div>
+        <div id="wg-template-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto"></div>
+        <p id="wg-template-loading" class="text-sm text-gray-500 dark:text-gray-400 py-4"><i class="fas fa-spinner fa-spin"></i> <%= wg.image.templatesLoading %></p>
+        <div class="mt-4 flex justify-end">
+            <button type="button" class="reset-button" id="wg-template-modal-cancel"><%= wg.close %></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.WELCOME_PAGE = {
+        cfg: <%- wgJsonSafe(settings.welcomeGoodbye || null) %>,
+        legacy: <%- wgJsonSafe(settings.welcome || null) %>,
+        channels: <%- wgJsonSafe(channels) %>,
+        members: <%- wgJsonSafe(typeof members !== 'undefined' ? members : []) %>,
+        templates: <%- wgJsonSafe(typeof templates !== 'undefined' ? templates : []) %>,
+        fonts: <%- wgJsonSafe(typeof fonts !== 'undefined' ? fonts : []) %>,
+        locale: <%- wgJsonSafe(wg) %>
+    };
+</script>

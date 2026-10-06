@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="<%= locals.currentLang || 'en' %>" dir="<%= (locals.currentLang || 'en') === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title || 'Viora' %> - Viora</title>
+    <meta name="description" content="Viora is a premium moderation platform for Discord. Real-time protection, automation and a beautiful dashboard — take full control of your server.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/viora.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/js/theme.js"></script>
+    <script src="/js/utils.js"></script>
+</head>
+<body class="viora-landing">
+    <div class="viora-landing-bg"></div>
+    <div class="viora-landing-grid"></div>
+    <%- body %>
+</body>
+</html>

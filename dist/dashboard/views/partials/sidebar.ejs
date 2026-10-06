@@ -1,0 +1,188 @@
+<div class="sidebar animate-mobile">
+    <div class="viora-sb-inner">
+        <div class="viora-sb-brand">
+            <div class="viora-sb-mark">V</div>
+            <div>
+                <div class="viora-sb-title">Viora<span class="viora-sb-badge">®</span></div>
+                <div class="viora-sb-sub"><%= locale.dashboard.subtitle || 'Viora Dashboard' %></div>
+            </div>
+        </div>
+
+        <%
+        let mainGuild = null;
+        if (typeof client !== 'undefined' && client && client.guilds && client.guilds.cache && typeof config !== 'undefined' && config) {
+            try { mainGuild = client.guilds.cache.get(config.mainGuildId) || null; } catch (e) { mainGuild = null; }
+        }
+        %>
+
+        <div class="viora-sb-server">
+            <div class="viora-sb-server-avatar">
+                <% if (mainGuild && mainGuild.icon) { %>
+                    <img src="https://cdn.discordapp.com/icons/<%= mainGuild.id %>/<%= mainGuild.icon %>.png?size=128" alt="Server icon" loading="lazy">
+                <% } else { %>
+                    <i class="fas fa-server"></i>
+                <% } %>
+            </div>
+            <div class="min-w-0">
+                <div class="viora-sb-server-name">
+                    <%= mainGuild ? mainGuild.name : (currentLang === 'ar' ? 'خادم الأوامر' : 'Command Server') %>
+                </div>
+                <div class="viora-sb-server-meta">
+                    <span class="dot"></span>
+                    <span><%= mainGuild && mainGuild.memberCount ? mainGuild.memberCount.toLocaleString() : '⌁' %> <%= currentLang === 'ar' ? 'عضو' : 'members' %></span>
+                </div>
+            </div>
+        </div>
+
+        <% if (typeof isAuthenticated !== 'undefined' && isAuthenticated && user) { %>
+        <div class="viora-sb-user">
+            <div class="viora-sb-user-avatar">
+                <% if (user.avatar) { %>
+                    <img src="<%= user.avatar %>" alt="Avatar" loading="lazy">
+                <% } else { %>
+                    <span><%= (user.username || 'U').charAt(0).toUpperCase() %></span>
+                <% } %>
+            </div>
+            <div class="min-w-0">
+                <div class="viora-sb-user-name"><%= user.globalName || user.username %></div>
+                <div class="viora-sb-user-role"><%= user.role === 'owner' ? (currentLang === 'ar' ? 'المالك' : 'Owner') : (currentLang === 'ar' ? 'مدير' : 'Admin') %></div>
+            </div>
+            <a href="/auth/logout" class="viora-sb-user-logout" title="<%= currentLang === 'ar' ? 'تسجيل الخروج' : 'Logout' %>">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+        <% } %>
+
+        <nav class="sidebar-content viora-sb-nav custom-scrollbar">
+            <div class="viora-sb-group">
+                <div class="viora-sb-group-title"><i class="fas fa-house-user"></i> <%= currentLang === 'ar' ? 'الرئيسية' : 'Main' %></div>
+                <div class="space-y-0.5">
+                    <a href="/dashboard" class="viora-sb-link nav-link <%= path === '/dashboard' ? 'active' : '' %>">
+                        <i class="fas fa-chart-line"></i><span><%= currentLang === 'ar' ? 'لوحة التحكم' : 'Dashboard' %></span>
+                    </a>
+                    <a href="/settings" class="viora-sb-link nav-link <%= path === '/settings' ? 'active' : '' %>">
+                        <i class="fas fa-sliders-h"></i><span><%= locale.dashboard.settings?.title || (currentLang === 'ar' ? 'الإعدادات' : 'Settings') %></span>
+                    </a>
+                    <a href="/docs" class="viora-sb-link nav-link <%= path === '/docs' ? 'active' : '' %>">
+                        <i class="fas fa-book-open"></i><span><%= locale.dashboard.navigation.docs || 'Documentation' %></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="viora-sb-group">
+                <div class="viora-sb-group-title"><i class="fas fa-terminal"></i> <%= currentLang === 'ar' ? 'الأوامر' : 'Commands' %></div>
+                <div class="space-y-0.5">
+                    <a href="/commands/general" class="viora-sb-link nav-link <%= path.startsWith('/commands/general') ? 'active' : '' %>">
+                        <i class="fas fa-terminal"></i><span><%= currentLang === 'ar' ? 'الأوامر العامة' : 'General Commands' %></span>
+                    </a>
+                    <a href="/commands/moderation" class="viora-sb-link nav-link <%= path.startsWith('/commands/moderation') ? 'active' : '' %>">
+                        <i class="fas fa-shield-halved"></i><span><%= currentLang === 'ar' ? 'أوامر الإشراف' : 'Moderation Commands' %></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="viora-sb-group">
+                <div class="viora-sb-group-title"><i class="fas fa-gear"></i> <%= currentLang === 'ar' ? 'التكوين' : 'Configuration' %></div>
+                <div class="space-y-0.5">
+                    <% const configLinks = [
+                        { path: '/logs', icon: 'fa-clock-rotate-left', name: 'logs', enName: 'Logs', arName: 'السجلات' },
+                        { path: '/tickets', icon: 'fa-ticket', name: 'tickets', enName: 'Tickets', arName: 'التذاكر' },
+                        { path: '/rules', icon: 'fa-gavel', name: 'rules', enName: 'Rules', arName: 'القوانين' },
+                        { path: '/suggestions', icon: 'fa-lightbulb', name: 'suggestions', enName: 'Suggestions', arName: 'الاقتراحات' },
+                        { path: '/apply', icon: 'fa-user-plus', name: 'apply', enName: 'Applications', arName: 'الطلبات' },
+                        { path: '/giveaway', icon: 'fa-gift', name: 'giveaway', enName: 'Giveaways', arName: 'الهدايا' },
+                        { path: '/tempChannels', icon: 'fa-microphone-lines', name: 'tempChannels', enName: 'Temp Channels', arName: 'القنوات المؤقتة' },
+                        { path: '/autoreply', icon: 'fa-reply-all', name: 'autoReply', enName: 'Auto Reply', arName: 'الرد التلقائي' },
+                        { path: '/welcome', icon: 'fa-hand-wave', name: 'welcome', enName: 'Welcome/Goodbye', arName: 'الترحيب والوداع' }
+                    ] %>
+                    <% configLinks.forEach(link => { %>
+                        <a href="<%= link.path %>" class="viora-sb-link nav-link <%= path === link.path ? 'active' : '' %>">
+                            <i class="fas <%= link.icon %>"></i><span><%= currentLang === 'ar' ? link.arName : (locale.dashboard.navigation[link.name] || link.enName) %></span>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+
+            <div class="viora-sb-group">
+                <div class="viora-sb-group-title"><i class="fas fa-shield-halved"></i> <%= currentLang === 'ar' ? 'الحماية' : 'Protection' %></div>
+                <div class="space-y-0.5">
+                    <a href="/protection" class="viora-sb-link nav-link <%= path === '/protection' ? 'active' : '' %>">
+                        <i class="fas fa-shield-halved"></i><span><%= currentLang === 'ar' ? 'إعدادات الحماية' : 'Protection Settings' %></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="viora-sb-group">
+                <div class="viora-sb-group-title"><i class="fas fa-gavel"></i> <%= currentLang === 'ar' ? 'الإشراف' : 'Moderation' %></div>
+                <div class="space-y-0.5">
+                    <% const modLinks = [
+                        { path: '/history', icon: 'fa-clock-rotate-left', enName: 'Moderation History', arName: 'سجل الإشراف' },
+                        { path: '/warnings', icon: 'fa-triangle-exclamation', enName: 'Warnings', arName: 'التحذيرات' },
+                        { path: '/staff', icon: 'fa-people-group', enName: 'Staff', arName: 'الفريق' },
+                        { path: '/antiraid', icon: 'fa-biohazard', enName: 'Anti-Raid', arName: 'مكافحة الهجمات' },
+                        { path: '/automod', icon: 'fa-robot', enName: 'AutoMod', arName: 'الإشراف التلقائي' }
+                    ] %>
+                    <% modLinks.forEach(link => { %>
+                        <a href="<%= link.path %>" class="viora-sb-link nav-link <%= path === link.path ? 'active' : '' %>">
+                            <i class="fas <%= link.icon %>"></i><span><%= currentLang === 'ar' ? link.arName : link.enName %></span>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+
+            <div class="viora-sb-group">
+                <div class="viora-sb-group-title"><i class="fas fa-wand-magic-sparkles"></i> <%= currentLang === 'ar' ? 'ميزات متقدمة' : 'Advanced' %></div>
+                <div class="space-y-0.5">
+                    <% const soonLinks = [
+                        { path: '/selectroles', icon: 'fa-id-badge', enName: 'Select Roles Manager', arName: 'مدير اختيار الرتب' },
+                        { path: '/games', icon: 'fa-gamepad', enName: 'Games', arName: 'ألعاب ديسكورد' },
+                        { path: '/autolines', icon: 'fa-align-left', enName: 'Auto Lines', arName: 'الرسائل التلقائية' },
+                        { path: '/leveling', icon: 'fa-chart-line', enName: 'Leveling System', arName: 'نظام المستويات' }
+                    ] %>
+                    <% soonLinks.forEach(link => { %>
+                        <a href="<%= link.path %>" class="viora-sb-link nav-link <%= path === link.path ? 'active' : '' %>">
+                            <i class="fas <%= link.icon %>"></i><span><%= currentLang === 'ar' ? link.arName : link.enName %></span>
+                            <span class="viora-sb-coming"><%= currentLang === 'ar' ? 'قريباً' : 'Soon' %></span>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+        </nav>
+
+        <div class="viora-sb-footer">
+            <div class="viora-sb-status">
+                <span class="flex items-center"><span class="online-pulse"></span><%= locale.dashboard.status.online || 'Online' %></span>
+                <i class="fas fa-circle-check" style="color:var(--viora-success)"></i>
+            </div>
+            <div class="viora-sb-socials">
+                <% const socialLinks = [
+                    { url: 'https://github.com/wickstudio', icon: 'fa-github' },
+                    { url: 'https://www.youtube.com/@wick_studio', icon: 'fa-youtube' },
+                    { url: 'https://www.instagram.com/mik__subhi/', icon: 'fa-instagram' },
+                    { url: 'https://discord.gg/z82w57MzUC', icon: 'fa-discord' }
+                ] %>
+                <% socialLinks.forEach(link => { %>
+                    <a href="<%= link.url %>" target="_blank" rel="noopener" aria-label="Social link">
+                        <i class="fab <%= link.icon %>"></i>
+                    </a>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(244, 63, 107, 0.35);
+    border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(244, 63, 107, 0.6);
+}
+</style>

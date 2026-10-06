@@ -1,0 +1,23 @@
+<%- contentFor('body') %>
+
+<div class="space-y-6 p-4 md:p-6 animate-fade-in">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.staff.topStaff %></h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6"><%= locale.dashboard.staff.since30d %></p>
+
+        <div id="staffLoader" class="flex items-center justify-center py-16">
+            <div class="h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="leaderboardGrid"></div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><%= locale.dashboard.staff.staffMembers %></h2>
+        <div id="staffMembersList" class="space-y-2">
+            <div class="flex items-center justify-center py-8 text-gray-400">
+                <div class="h-6 w-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        </div>
+    </div>
+</div>

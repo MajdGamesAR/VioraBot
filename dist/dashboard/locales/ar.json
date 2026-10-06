@@ -1,0 +1,1367 @@
+{
+    "dashboard": {
+        "title": "لوحة التحكم",
+        "subtitle": "لوحة تحكم Viora",
+        "overview": {
+            "title": "نظرة عامة على الإشراف",
+            "welcome": "مرحباً بك في Viora",
+            "welcomeMessage": "تحليلات إشراف فورية، إدارة الفريق ونشاط مفصّل لسيرفرك.",
+            "todayTotal": "إجراءات اليوم",
+            "todayWarn": "تحذيرات اليوم",
+            "todayKick": "طرد اليوم",
+            "todayBan": "حظر اليوم",
+            "todayTimeout": "إنذارات مهلة اليوم",
+            "todayAutomod": "إجراءات الإشراف التلقائي",
+            "todayAntiraid": "إجراءات مكافحة الهجمات",
+            "ticketsOpen": "تذاكر مفتوحة",
+            "ticketsClosed": "تذاكر مغلقة",
+            "suggestionsPending": "اقتراحات معلقة",
+            "suggestionsDecided": "اقتراحات محسومة",
+            "totalRecords": "إجمالي سجلات الإشراف",
+            "totalWarnings": "التحذيرات",
+            "members": "الأعضاء",
+            "onlineMembers": "متصل",
+            "channels": "القنوات",
+            "roles": "الرتب",
+            "analyticsTitle": "نشاط الإشراف",
+            "periodDay": "24 ساعة",
+            "periodWeek": "7 أيام",
+            "periodMonth": "30 يوماً",
+            "actionBreakdown": "توزيع الإجراءات",
+            "topStaff": "أفضل الفريق",
+            "recentActivity": "النشاط الأخير",
+            "ticketsManagement": "إدارة التذاكر",
+            "suggestionsManagement": "إدارة الاقتراحات",
+            "statusOpen": "مفتوحة",
+            "statusClaimed": "مستلمة",
+            "statusClosed": "مغلقة",
+            "statusAll": "الكل",
+            "statusPending": "معلق",
+            "statusAccepted": "مقبول",
+            "statusRejected": "مرفوض",
+            "accept": "قبول",
+            "reject": "رفض",
+            "close": "إغلاق",
+            "reopen": "إعادة فتح",
+            "delete": "حذف",
+            "reason": "السبب",
+            "confirmClose": "إغلاق التذكرة",
+            "confirmDelete": "حذف التذكرة",
+            "reasonRequired": "السبب مطلوب.",
+            "actionPerformed": "تم تنفيذ الإجراء بنجاح.",
+            "actionFailed": "تعذر إكمال الإجراء.",
+            "noTickets": "لا توجد تذاكر.",
+            "noSuggestions": "لا توجد اقتراحات.",
+            "noActivity": "لا يوجد نشاط بعد.",
+            "liveData": "بيانات فورية",
+            "refresh": "تحديث",
+            "searchUser": "ابحث عن عضو بالرقم...",
+            "go": "انتقال"
+        },
+        "history": {
+            "title": "سجل الإشراف",
+            "search": "ابحث بالمستخدم أو السبب...",
+            "allActions": "كل الإجراءات",
+            "from": "من",
+            "to": "إلى",
+            "apply": "تطبيق",
+            "user": "المستخدم",
+            "moderator": "المشرف",
+            "action": "الإجراء",
+            "reason": "السبب",
+            "date": "التاريخ",
+            "noResults": "لا توجد سجلات إشراف.",
+            "loading": "جاري تحميل السجل...",
+            "loadError": "فشل تحميل سجل الإشراف.",
+            "page": "صفحة",
+            "of": "من",
+            "prev": "السابق",
+            "next": "التالي",
+            "target": "الهدف"
+        },
+        "warnings": {
+            "title": "التحذيرات",
+            "addWarning": "إضافة تحذير",
+            "userId": "رقم المستخدم",
+            "reason": "السبب",
+            "add": "إضافة تحذير",
+            "user": "المستخدم",
+            "moderator": "المشرف",
+            "date": "التاريخ",
+            "expires": "الانتهاء",
+            "status": "الحالة",
+            "active": "نشط",
+            "expired": "منتهي",
+            "all": "الكل",
+            "noWarnings": "لا توجد تحذيرات.",
+            "warningAdded": "تمت إضافة التحذير بنجاح.",
+            "warningRemoved": "تمت إزالة التحذير بنجاح.",
+            "confirmRemove": "هل تريد إزالة هذا التحذير؟",
+            "loading": "جاري تحميل التحذيرات...",
+            "loadError": "فشل تحميل التحذيرات."
+        },
+        "staff": {
+            "title": "الفريق",
+            "topStaff": "أفضل أعضاء الفريق",
+            "staffMembers": "أعضاء الفريق",
+            "total": "إجمالي الإجراءات",
+            "actions": "الإجراءات",
+            "noData": "لا يوجد نشاط للفريق بعد.",
+            "loading": "جاري تحميل إحصائيات الفريق...",
+            "loadError": "فشل تحميل إحصائيات الفريق.",
+            "since30d": "آخر 30 يوماً"
+        },
+        "user": {
+            "title": "ملف العضو",
+            "profile": "ملف العضو",
+            "notMember": "ليس عضواً في هذا السيرفر",
+            "memberSince": "انضم",
+            "accountCreated": "تاريخ إنشاء الحساب",
+            "isTimeouted": "مهلة نشطة",
+            "roles": "الرتب",
+            "warnings": "التحذيرات",
+            "activeWarnings": "نشط",
+            "noWarnings": "لا توجد تحذيرات لهذا المستخدم.",
+            "history": "سجل الإشراف",
+            "noHistory": "لا يوجد سجل إشراف لهذا المستخدم.",
+            "totalActions": "إجمالي إجراءات الإشراف",
+            "loading": "جاري تحميل الملف...",
+            "loadError": "فشل تحميل ملف العضو.",
+            "backToSearch": "العودة إلى النظرة العامة"
+        },
+        "antiraid": {
+            "title": "مكافحة الهجمات",
+            "settingsTitle": "حماية مكافحة الهجمات",
+            "enabled": "مفعّلة",
+            "joinLimit": "الحد الأقصى للانضمامات",
+            "timeWindow": "الوقت (مللي ثانية)",
+            "cooldown": "فترة التهدئة (مللي ثانية)",
+            "newAccountAgeDays": "حد عمر الحساب الجديد (أيام)",
+            "botWhitelist": "البوتات المسموح بها",
+            "logChannel": "قناة السجل",
+            "action": "الإجراء",
+            "actionNone": "لا شيء",
+            "actionKick": "طرد",
+            "actionBan": "حظر",
+            "reason": "سبب الإجراء",
+            "save": "حفظ الإعدادات",
+            "saved": "تم حفظ إعدادات مكافحة الهجمات.",
+            "saveError": "فشل حفظ إعدادات مكافحة الهجمات.",
+            "events": "أحداث مكافحة الهجمات الأخيرة",
+            "noEvents": "لا توجد أحداث مسجلة.",
+            "detected": "تم اكتشافه"
+        },
+        "automod": {
+            "title": "الإشراف التلقائي",
+            "enabled": "مفعّل",
+            "save": "حفظ الإعدادات"
+        },
+        "actionTypes": {
+            "warn": "تحذير",
+            "timeout": "مهلة",
+            "kick": "طرد",
+            "ban": "حظر",
+            "unban": "إلغاء الحظر",
+            "untimeout": "إزالة المهلة",
+            "purge": "تنظيف",
+            "unwarn": "إزالة تحذير",
+            "automod": "إشراف تلقائي",
+            "antiraid": "مكافحة هجمات"
+        },
+        "navigation": {
+            "main": "الرئيسية",
+            "dashboard": "لوحة التحكم",
+            "commands": "الأوامر",
+            "general": "الأوامر العامة",
+            "moderation": "أوامر الإشراف",
+            "configuration": "الإعدادات",
+            "home": "الرئيسيه",
+            "logs": "السجلات",
+            "settings": "الإعدادات",
+            "tickets": "التذاكر",
+            "protection": "الحماية",
+            "language": "اللغة",
+            "rules": "القوانين",
+            "apply": "التقديمات",
+            "giveaway": "الهدايا",
+            "tempChannels": "القنوات المؤقتة",
+            "autoReply": "الرد التلقائي",
+            "welcome": "الترحيب والمغادرة",
+            "suggestions": "الاقتراحات",
+            "docs": "التوثيق"
+        },
+        "stats": {
+            "servers": "السيرفرات",
+            "users": "المستخدمين",
+            "commands": "الأوامر",
+            "uptime": "وقت التشغيل",
+            "ping": "بينغ"
+        },
+        "status": {
+            "online": "متصل",
+            "offline": "غير متصل",
+            "enabled": "مفعل",
+            "disabled": "معطل"
+        },
+        "activity": {
+            "title": "النشاط الأخير",
+            "initialized": "تم تهيئة لوحة التحكم",
+            "ready": "لوحة التحكم جاهزة للاستخدام",
+            "timeAgo": "الآن"
+        },
+        "error": {
+            "404": {
+                "title": "الصفحة غير موجودة",
+                "message": "لا تقلق، يمكنك العودة إلى لوحة التحكم",
+                "goHome": "العودة للرئيسية",
+                "goBack": "رجوع",
+                "needHelp": "تحتاج مساعدة؟ انضم إلى سيرفر الديسكورد"
+            }
+        },
+        "footer": {
+            "madeWith": "صنع بـ ❤️ بواسطة",
+            "copyright": "© 2024 Wick® Studio. جميع الحقوق محفوظة."
+        },
+        "theme": {
+            "light": "الوضع النهاري",
+            "dark": "الوضع الليلي"
+        },
+        "languages": {
+            "en": "English",
+            "ar": "العربية"
+        },
+        "moduleStatus": "حالة الوحدات",
+        "botHealth": "صحة البوت",
+        "quickActions": "إجراءات سريعة",
+        "languageSettings": "إعدادات اللغة",
+        "defaultLanguage": "لغة البوت الافتراضية",
+        "supportedLanguages": "اللغات المدعومة",
+        "supportedLanguagesHint": "اختر لغة واحدة على الأقل. يجب تضمين اللغة الافتراضية.",
+        "saveChanges": "حفظ التغييرات",
+        "autoRoles": {
+            "title": "إعدادات الرتب التلقائية",
+            "enabled": "مفعل",
+            "members": "الرتب التلقائية للأعضاء",
+            "membersDescription": "سيتم تعيين هذه الرتب تلقائيًا للأعضاء الجدد عند انضمامهم إلى السيرفر.",
+            "bots": "الرتب التلقائية للبوتات",
+            "botsDescription": "سيتم تعيين هذه الرتب تلقائيًا للبوتات الجديدة عند إضافتها إلى السيرفر.",
+            "selectRoles": "اختر الرتب",
+            "noRolesSelected": "لم يتم اختيار أي رتب"
+        },
+        "commands": {
+            "title": "الأوامر",
+            "general": "الأوامر العامة",
+            "moderation": "أوامر الإشراف",
+            "utility": "الأوامر المساعدة",
+            "search": "البحث عن الأوامر...",
+            "managePermissions": "إدارة الصلاحيات",
+            "permissionsTitle": "صلاحيات الأمر",
+            "enabledRoles": "الرتب المفعلة",
+            "disabledRoles": "الرتب المعطلة",
+            "save": "حفظ التغييرات",
+            "cancel": "إلغاء",
+            "cooldown": "وقت الانتظار",
+            "aliases": "الأسماء البديلة",
+            "newAlias": "اسم بديل جديد",
+            "add": "إضافة",
+            "manageCategory": "إدارة الأوامر",
+            "description": "عرض وإدارة جميع أوامر البوت",
+            "generalDescription": "أوامر أساسية للاستخدام العام للسيرفر",
+            "moderationDescription": "أوامر للإشراف وإدارة السيرفر",
+            "utilityDescription": "أوامر مساعدة متنوعة لأغراض مختلفة"
+        },
+        "commandDescriptions": {
+            "avatar": "عرض صورة المستخدم",
+            "banner": "عرض بانر المستخدم",
+            "ping": "فحص سرعة البوت",
+            "roles": "عرض رتب السيرفر",
+            "server": "عرض معلومات السيرفر",
+            "user": "عرض معلومات المستخدم",
+            "ban": "حظر عضو",
+            "kick": "طرد عضو",
+            "mute": "كتم عضو",
+            "unmute": "إلغاء كتم عضو",
+            "warn": "تحذير عضو",
+            "unwarn": "إزالة تحذير",
+            "clear": "مسح الرسائل",
+            "lock": "قفل القناة",
+            "unlock": "فتح القناة",
+            "hide": "إخفاء قناة عن المستخدمين",
+            "unhide": "إظهار قناة مخفية",
+            "move": "نقل مستخدم إلى قناة صوتية أخرى",
+            "timeout": "إيقاف مؤقت لعضو",
+            "rtimeout": "إزالة الإيقاف المؤقت من عضو",
+            "setnick": "تعيين لقب لمستخدم",
+            "role": "إضافة رتبة لمستخدم",
+            "rrole": "إزالة رتبة من مستخدم",
+            "warns": "عرض تحذيرات المستخدم",
+            "apply": "تقديم طلب توظيف",
+            "ticket": "إنشاء تذكرة دعم",
+            "unban": "إلغاء حظر مستخدم محظور"
+        },
+        "logs": {
+            "title": "إعدادات السجلات",
+            "enableAll": "تفعيل الكل",
+            "disableAll": "تعطيل الكل",
+            "search": "البحث في السجلات...",
+            "channel": "قناة السجلات",
+            "selectChannel": "اختر قناة",
+            "embedColor": "لون التضمين",
+            "ignoreBots": "تجاهل إجراءات البوت",
+            "saveChanges": "حفظ التغييرات",
+            "saveChangesDescription": "هل أنت متأكد من حفظ هذه التغييرات؟",
+            "cancel": "إلغاء",
+            "save": "حفظ",
+            "types": {
+                "messageDelete": "حذف الرسائل",
+                "messageEdit": "تعديل الرسائل",
+                "roleCreate": "إنشاء الرتب",
+                "roleDelete": "حذف الرتب",
+                "roleUpdate": "تحديث الرتب",
+                "memberJoin": "انضمام الأعضاء",
+                "memberLeave": "مغادرة الأعضاء",
+                "memberBan": "حظر الأعضاء",
+                "memberUnban": "إلغاء حظر الأعضاء",
+                "memberKick": "طرد الأعضاء",
+                "memberTimeout": "إيقاف مؤقت للأعضاء",
+                "memberUntimeout": "إلغاء الإيقاف المؤقت للأعضاء",
+                "channelCreate": "إنشاء القنوات",
+                "channelDelete": "حذف القنوات",
+                "channelUpdate": "تحديث القنوات",
+                "emojiCreate": "إضافة الرموز التعبيرية",
+                "emojiDelete": "حذف الرموز التعبيرية",
+                "emojiUpdate": "تحديث الرموز التعبيرية",
+                "stickerCreate": "إضافة الملصقات",
+                "stickerDelete": "حذف الملصقات",
+                "stickerUpdate": "تحديث الملصقات",
+                "threadCreate": "إنشاء المناقشات",
+                "threadDelete": "حذف المناقشات",
+                "threadUpdate": "تحديث المناقشات",
+                "voiceJoin": "الانضمام للقنوات الصوتية",
+                "voiceLeave": "مغادرة القنوات الصوتية",
+                "voiceMove": "الانتقال بين القنوات الصوتية",
+                "voiceServerMute": "كتم صوت الأعضاء في السيرفر",
+                "voiceServerDeafen": "إلغاء سماع الأعضاء في السيرفر",
+                "inviteCreate": "إنشاء روابط الدعوة",
+                "messageBulkDelete": "حذف الرسائل المتعددة",
+                "nicknameUpdate": "تغيير الأسماء المستعارة",
+                "serverUpdate": "تحديث إعدادات السيرفر",
+                "roleGive": "إضافة الرتب للأعضاء",
+                "roleRemove": "إزالة الرتب من الأعضاء"
+            },
+            "descriptions": {
+                "messageDelete": "سجل عند حذف الرسائل",
+                "messageEdit": "سجل عند تعديل الرسائل",
+                "roleCreate": "سجل عند إنشاء الرتب",
+                "roleDelete": "سجل عند حذف الرتب",
+                "roleUpdate": "سجل عند تحديث الرتب",
+                "memberJoin": "سجل عند انضمام الأعضاء للسيرفر",
+                "memberLeave": "سجل عند مغادرة الأعضاء للسيرفر",
+                "memberBan": "سجل عند حظر الأعضاء",
+                "memberUnban": "سجل عند إلغاء حظر الأعضاء",
+                "memberKick": "سجل عند طرد الأعضاء",
+                "memberTimeout": "سجل عند إيقاف الأعضاء مؤقتاً",
+                "memberUntimeout": "سجل عند إلغاء الإيقاف المؤقت للأعضاء",
+                "channelCreate": "سجل عند إنشاء القنوات",
+                "channelDelete": "سجل عند حذف القنوات",
+                "channelUpdate": "سجل عند تحديث القنوات",
+                "emojiCreate": "سجل عند إضافة الرموز التعبيرية للسيرفر",
+                "emojiDelete": "سجل عند حذف الرموز التعبيرية من السيرفر",
+                "emojiUpdate": "سجل عند تحديث الرموز التعبيرية",
+                "stickerCreate": "سجل عند إضافة الملصقات للسيرفر",
+                "stickerDelete": "سجل عند حذف الملصقات من السيرفر",
+                "stickerUpdate": "سجل عند تحديث الملصقات",
+                "threadCreate": "سجل عند إنشاء المناقشات",
+                "threadDelete": "سجل عند حذف المناقشات",
+                "threadUpdate": "سجل عند تحديث المناقشات",
+                "voiceJoin": "سجل عند انضمام الأعضاء للقنوات الصوتية",
+                "voiceLeave": "سجل عند مغادرة الأعضاء للقنوات الصوتية",
+                "voiceMove": "سجل عند انتقال الأعضاء بين القنوات الصوتية",
+                "voiceServerMute": "سجل عند كتم صوت الأعضاء في السيرفر",
+                "voiceServerDeafen": "سجل عند إلغاء سماع الأعضاء في السيرفر",
+                "inviteCreate": "سجل عند إنشاء روابط دعوة جديدة",
+                "messageBulkDelete": "سجل عند حذف عدة رسائل دفعة واحدة",
+                "nicknameUpdate": "سجل عند تغيير الأسماء المستعارة للأعضاء",
+                "serverUpdate": "سجل عند تحديث إعدادات السيرفر",
+                "roleGive": "سجل عند إضافة الرتب للأعضاء",
+                "roleRemove": "سجل عند إزالة الرتب من الأعضاء"
+            }
+        },
+        "protection": {
+            "title": "إعدادات الحماية",
+            "description": "تكوين إعدادات وحدود حماية السيرفر",
+            "stats": {
+                "activeProtections": "الحمايات النشطة",
+                "protectedRoles": "الرتب المحمية",
+                "whitelistedBots": "البوتات المسموح بها",
+                "actionsBlocked": "الإجراءات المحظورة"
+            },
+            "antispam": {
+                "title": "الحماية من السبام",
+                "messageLimit": "حد الرسائل",
+                "timeWindow": "النافذة الزمنية (ثواني)",
+                "duplicateLimit": "حد التكرار",
+                "timeoutDuration": "مدة الإيقاف المؤقت (دقائق)",
+                "ignoredChannels": "القنوات المستثناة",
+                "ignoredRoles": "الرتب المستثناة من مكافحة السبام",
+                "messageSettings": "إعدادات الرسائل",
+                "actionSettings": "إعدادات الإجراء"
+            },
+            "server": {
+                "title": "حماية السيرفر",
+                "updateLimit": "حد التحديثات"
+            },
+            "antibot": {
+                "title": "الحماية من البوتات",
+                "whitelistedBots": "معرفات البوتات المسموح بها",
+                "placeholder": "أدخل معرفات البوتات مفصولة بفواصل"
+            },
+            "role": {
+                "title": "حماية الرتب",
+                "createLimit": "حد الإنشاء",
+                "deleteLimit": "حد الحذف",
+                "updateLimit": "حد التحديث",
+                "addLimit": "حد الإضافة",
+                "removeLimit": "حد الإزالة"
+            },
+            "channel": {
+                "title": "حماية القنوات",
+                "createLimit": "حد الإنشاء",
+                "deleteLimit": "حد الحذف",
+                "updateLimit": "حد التحديث"
+            },
+            "timeout": {
+                "title": "حماية الإيقاف المؤقت",
+                "timeoutLimit": "حد الإيقاف",
+                "untimeoutLimit": "حد إلغاء الإيقاف"
+            },
+            "moderation": {
+                "title": "حماية الإشراف",
+                "kickLimit": "حد الطرد",
+                "banLimit": "حد الحظر",
+                "unbanLimit": "حد إلغاء الحظر"
+            },
+            "common": {
+                "timeWindow": "النافذة الزمنية (ثواني)",
+                "actionType": "نوع الإجراء",
+                "actions": {
+                    "timeout": "إيقاف مؤقت",
+                    "kick": "طرد",
+                    "ban": "حظر",
+                    "removeRoles": "إزالة الرتب"
+                },
+"unsavedChanges": "لديك تغييرات غير محفوظة",
+            "channelDeleted": "القناة المحددة لم تعد موجودة — اختر قناة جديدة.{id}",
+            "channelRequired": "اختر قناة لـ",
+            "noChannels": "لا توجد قنوات نصية — تأكد من أن البوت لديه صلاحية الوصول إلى قنوات نصية في هذا السيرفر.",
+                "resetDefaults": "إعادة الإعدادات الافتراضية",
+                "saveChanges": "حفظ التغييرات",
+                "confirmReset": "هل أنت متأكد من إعادة جميع إعدادات الحماية إلى الوضع الافتراضي؟",
+                "ignoredRoles": "الرتب المستثناة",
+                "ignoredChannels": "القنوات المستثناة",
+                "selectRoles": "اختر الرتب المستثناة",
+                "selectChannels": "اختر القنوات المستثناة",
+                "whitelistedBots": "البوتات المسموح بها",
+                "enterBotIds": "أدخل معرفات البوتات (مفصولة بفواصل)",
+                "timeoutDuration": "مدة الإيقاف المؤقت (دقائق)",
+                "banDeleteDays": "أيام حذف الرسائل",
+                "actionSettings": "إعدادات الإجراء",
+                "limits": "الحدود",
+                "protectionSettings": "إعدادات الحماية"
+            }
+        },
+        "tickets": {
+            "title": "إعدادات التذاكر",
+            "globalSettings": "الإعدادات العامة",
+            "systemEnabled": "نظام التذاكر مفعل",
+            "embedSettings": "إعدادات العرض",
+            "embedColor": "لون العرض",
+            "thumbnailUrl": "رابط الصورة المصغرة",
+            "footerText": "نص التذييل",
+            "footerIcon": "أيقونة التذييل",
+            "sectionName": "اسم القسم",
+            "emoji": "الرمز التعبيري",
+            "description": "الوصف",
+            "categoryId": "الفئة",
+            "logChannel": "قناة السجلات",
+            "adminRoles": "رتب المشرفين",
+            "cooldown": "وقت الانتظار (ساعات)",
+            "enableAll": "تفعيل الكل",
+            "disableAll": "تعطيل الكل",
+            "saveChanges": "حفظ التغييرات",
+            "assignmentMode": "وضع تعيين التذاكر",
+            "assignmentModeManual": "يدوي",
+            "assignmentModeRoundRobin": "تناوب دائري",
+            "assignmentModeWorkload": "الأقل عبئاً",
+            "assignmentLabel": "التخصيص",
+            "manual": "يدوي",
+            "auto": "تلقائي",
+            "autoTags": "وسوم تلقائية",
+            "autoTagsPlaceholder": "وسوم مفصولة بفواصل…",
+            "closeReasons": "أسباب الإغلاق",
+            "closeReasonsPlaceholder": "سبب إغلاق في كل سطر…",
+            "imageUrl": "رابط الصورة",
+            "viewImage": "عرض الصورة",
+            "newSectionTags": "وسوم الأقسام الافتراضية",
+            "newSectionTagsPlaceholder": "وسوم مفصولة بفواصل…",
+            "addSection": "إضافة قسم",
+            "addSectionText": "انقر لإضافة قسم تذاكر جديد",
+            "messages": {
+                "saved": "تم حفظ إعدادات التذاكر بنجاح",
+                "error": "فشل في حفظ إعدادات التذاكر",
+                "confirmReset": "هل أنت متأكد من إعادة تعيين جميع إعدادات التذاكر؟",
+                "sectionAdded": "تمت إضافة قسم التذاكر بنجاح",
+                "sectionDeleted": "تم حذف قسم التذاكر بنجاح",
+                "addError": "فشل في إضافة قسم التذاكر",
+                "deleteError": "فشل في حذف قسم التذاكر",
+                "confirmDelete": "هل أنت متأكد من حذف قسم التذاكر هذا؟"
+            },
+            "stats": {
+                "activeTickets": "التذاكر النشطة",
+                "adminRoles": "رتب المشرفين",
+                "categories": "الفئات",
+                "avgCooldown": "متوسط وقت الانتظار"
+            }
+        },
+        "common": {
+            "unsavedChanges": "لديك تغييرات غير محفوظة",
+            "resetDefaults": "إعادة الإعدادات الافتراضية",
+            "reset": "إعادة تعيين",
+            "saveChanges": "حفظ التغييرات",
+            "confirmReset": "هل أنت متأكد من إعادة جميع الإعدادات إلى الوضع الافتراضي؟",
+            "saved": "تم حفظ الإعدادات بنجاح",
+            "error": "فشل في حفظ الإعدادات",
+            "add": "إضافة",
+            "remove": "إزالة",
+            "edit": "تعديل",
+            "delete": "حذف",
+            "cancel": "إلغاء",
+            "confirm": "تأكيد",
+            "enabled": "مفعل",
+            "disabled": "معطل",
+            "inDevelopment": "قيد التطوير",
+            "aboutFeature": "حول هذه الميزة",
+            "keyFeatures": "الميزات الرئيسية",
+            "faq": "الأسئلة الشائعة",
+            "success": "نجاح",
+            "validEmail": "يرجى إدخال بريد إلكتروني صحيح"
+        },
+        "apply": {
+            "title": "إعدادات التقديمات",
+            "globalSettings": "الإعدادات العامة",
+            "systemEnabled": "نظام التقديمات مفعل",
+            "embedSettings": "إعدادات العرض",
+            "embedColor": "لون العرض",
+            "thumbnailUrl": "رابط الصورة المصغرة",
+            "footerText": "نص التذييل",
+            "footerIcon": "أيقونة التذييل",
+            "addPosition": "إضافة منصب",
+            "enableAll": "تفعيل الكل",
+            "disableAll": "تعطيل الكل",
+            "positionName": "اسم المنصب",
+            "emoji": "الرمز التعبيري",
+            "positionColor": "لون المنصب",
+            "logChannel": "قناة السجلات",
+            "reviewerRoles": "رتب المراجعين",
+            "questions": "الأسئلة",
+            "requirements": "المتطلبات",
+            "minimumAccountAge": "متطلبات عمر الحساب",
+            "minimumGuildAge": "الحد الأدنى للتواجد في السيرفر",
+            "requiredRoles": "الرتب المطلوبة",
+            "blacklistedRoles": "الرتب المحظورة",
+            "acceptRoles": "رتب القبول",
+            "acceptMessage": "رسالة القبول",
+            "stats": {
+                "activePositions": "المناصب النشطة",
+                "totalAccepted": "إجمالي المقبولين",
+                "avgCooldown": "متوسط وقت الانتظار",
+                "reviewerRoles": "رتب المراجعين"
+            },
+            "messages": {
+                "saved": "تم حفظ إعدادات التقديمات بنجاح",
+                "error": "فشل في حفظ إعدادات التقديمات",
+                "confirmReset": "هل أنت متأكد من إعادة تعيين جميع إعدادات التقديمات؟",
+                "positionAdded": "تمت إضافة المنصب بنجاح",
+                "positionDeleted": "تم حذف المنصب بنجاح",
+                "addError": "فشل في إضافة المنصب",
+                "deleteError": "فشل في حذف المنصب",
+                "confirmDelete": "هل أنت متأكد من حذف هذا المنصب؟"
+            }
+        },
+        "rules": {
+            "title": "إعدادات القوانين",
+            "globalSettings": "الإعدادات العامة",
+            "systemEnabled": "نظام القوانين مفعل",
+            "systemEnabledDesc": "تفعيل أو تعطيل نظام القوانين",
+            "stats": {
+                "activeSections": "الأقسام النشطة",
+                "totalRules": "إجمالي القوانين",
+                "interfaceType": "نوع الواجهة"
+            },
+            "interface": {
+                "title": "إعدادات الواجهة",
+                "type": "نوع الواجهة",
+                "style": "نمط الأزرار",
+                "buttons": "أزرار",
+                "select": "قائمة منسدلة"
+            },
+            "mainEmbed": {
+                "title": "العرض الرئيسي",
+                "description": "الوصف",
+                "color": "اللون",
+                "thumbnail": "الصورة المصغرة",
+                "thumbnailUrl": "رابط الصورة المصغرة",
+                "image": "الصورة",
+                "imageUrl": "رابط الصورة",
+                "footer": "التذييل",
+                "footerText": "نص التذييل",
+                "footerIcon": "رابط أيقونة التذييل"
+            },
+            "sections": {
+                "title": "أقسام القوانين",
+                "add": "إضافة قسم",
+                "namePlaceholder": "اسم القسم",
+                "emoji": "الرمز التعبيري",
+                "description": "الوصف",
+                "rules": "القوانين",
+                "addRule": "إضافة قانون",
+                "embedSettings": "إعدادات عرض القسم",
+                "embedColor": "لون العرض",
+                "thumbnail": "الصورة المصغرة",
+                "thumbnailUrl": "رابط الصورة المصغرة",
+                "image": "الصورة",
+                "imageUrl": "رابط الصورة",
+                "footer": "التذييل",
+                "footerText": "نص التذييل",
+                "footerIcon": "رابط أيقونة التذييل"
+            },
+            "messages": {
+                "saved": "تم حفظ إعدادات القوانين بنجاح",
+                "error": "فشل في حفظ إعدادات القوانين",
+                "confirmReset": "هل أنت متأكد من إعادة تعيين جميع إعدادات القوانين؟",
+                "confirmDelete": "هل أنت متأكد من حذف هذا القسم؟",
+                "minimumRule": "يجب أن يحتوي كل قسم على قانون واحد على الأقل"
+            },
+            "enableAll": "تفعيل الكل",
+            "disableAll": "تعطيل الكل"
+        },
+        "giveaway": {
+            "title": "إعدادات الهدايا",
+            "globalSettings": "الإعدادات العامة",
+            "systemEnabled": "نظام الهدايا مفعل",
+            "systemEnabledDesc": "تفعيل أو تعطيل نظام الهدايا",
+            "stats": {
+                "activeGiveaways": "الهدايا النشطة",
+                "totalWinners": "إجمالي الفائزين",
+                "avgDuration": "متوسط المدة",
+                "totalParticipants": "إجمالي المشاركين"
+            },
+            "defaultDuration": "المدة الافتراضية",
+            "maxDuration": "الحد الأقصى للمدة",
+            "minWinners": "الحد الأدنى للفائزين",
+            "maxWinners": "الحد الأقصى للفائزين",
+            "buttonSettings": "إعدادات الأزرار",
+            "enterButton": "نص زر المشاركة",
+            "leaveButton": "نص زر المغادرة",
+            "rerollButton": "نص زر إعادة الاختيار",
+            "endButton": "نص زر الإنهاء",
+            "embedSettings": "إعدادات العرض",
+            "embedColor": "لون العرض",
+            "embedThumbnail": "رابط الصورة المصغرة",
+            "embedFooter": "نص التذييل",
+            "requirements": "المتطلبات",
+            "minAccountAge": "الحد الأدنى لعمر الحساب",
+            "minGuildAge": "الحد الأدنى للتواجد في السيرفر",
+            "allowedRoles": "الرتب المسموح بها",
+            "blacklistedRoles": "الرتب المحظورة",
+            "channelSettings": "إعدادات القنوات",
+            "allowedChannels": "القنوات المسموح بها",
+            "blacklistedChannels": "القنوات المحظورة",
+            "messages": {
+                "saved": "تم حفظ إعدادات الهدايا بنجاح",
+                "error": "فشل في حفظ إعدادات الهدايا",
+                "confirmReset": "هل أنت متأكد من إعادة تعيين جميع إعدادات الهدايا؟"
+            }
+        },
+        "tempChannels": {
+            "title": "القنوات الصوتية المؤقتة",
+            "stats": {
+                "activeChannels": "القنوات النشطة",
+                "totalUsers": "إجمالي المستخدمين",
+                "avgDuration": "متوسط المدة",
+                "totalCreated": "إجمالي القنوات المنشأة"
+            },
+            "settings": {
+                "title": "إعدادات القناة",
+                "parentChannel": "القناة الأساسية",
+                "category": "الفئة",
+                "defaultName": "اسم القناة الافتراضي",
+                "defaultNamePlaceholder": "🔊 قناة {user}",
+                "defaultNameHelp": "استخدم {user} لتضمين اسم المستخدم",
+                "userLimit": "حد المستخدمين",
+                "userLimitHelp": "0 للا محدود",
+                "channelSettingsTitle": "إعدادات القناة",
+                "multipleAllowed": "السماح بقنوات متعددة لكل مستخدم",
+                "fullPermissions": "صلاحيات كاملة لمالك القناة",
+                "deleteWhenEmpty": "حذف عندما تكون فارغة",
+                "deleteDelay": "تأخير الحذف",
+                "permissionsTitle": "الصلاحيات",
+                "allowedRoles": "الرتب المسموح بها",
+                "blacklistedRoles": "الرتب المحظورة"
+            }
+        },
+        "autoReply": {
+            "title": "إعدادات الرد التلقائي",
+            "stats": {
+                "activeSections": "الأقسام النشطة",
+                "totalTriggers": "إجمالي المشغلات",
+                "cooldown": "وقت الانتظار",
+                "chance": "نسبة الرد"
+            },
+            "settings": {
+                "globalTitle": "الإعدادات العامة",
+                "mentionUser": "ذكر المستخدم",
+                "replyToMessage": "الرد على الرسالة",
+                "caseSensitive": "حساس لحالة الأحرف",
+                "matchType": "نوع المطابقة",
+                "matchTypes": {
+                    "exact": "مطابقة تامة",
+                    "includes": "يحتوي على",
+                    "startsWith": "يبدأ بـ",
+                    "endsWith": "ينتهي بـ",
+                    "regex": "تعبير منتظم"
+                },
+                "chance": "نسبة الرد",
+                "cooldown": "وقت الانتظار",
+                "sectionsTitle": "أقسام الرد التلقائي",
+                "addSection": "إضافة قسم",
+                "sectionNamePlaceholder": "اسم القسم",
+                "newSectionDefault": "قسم جديد",
+                "triggers": "المشغلات",
+                "triggerPlaceholder": "أدخل نص المشغل...",
+                "responses": "الردود",
+                "responsePlaceholder": "أدخل نص الرد..."
+            },
+            "messages": {
+                "saved": "تم حفظ إعدادات الرد التلقائي بنجاح",
+                "error": "فشل في حفظ إعدادات الرد التلقائي",
+                "confirmReset": "هل أنت متأكد من إعادة تعيين جميع إعدادات الرد التلقائي؟"
+            }
+        },
+        "suggestions": {
+            "title": "إعدادات الاقتراحات",
+            "stats": {
+                "status": "الحالة",
+                "cooldown": "وقت الانتظار",
+                "images": "الصور",
+                "channels": "القنوات"
+            },
+            "settings": {
+                "globalTitle": "الإعدادات العامة",
+                "systemEnabled": "نظام الاقتراحات مفعل",
+                "embedColor": "لون العرض",
+                "cooldown": "وقت الانتظار (ثواني)",
+                "contentLimits": "حدود المحتوى",
+                "minLength": "الحد الأدنى للطول",
+                "maxLength": "الحد الأقصى للطول",
+                "maxImageSize": "الحد الأقصى لحجم الصورة (ميجابايت)",
+                "allowImages": "السماح بالصور",
+                "requireContent": "محتوى مطلوب",
+                "deleteOriginal": "حذف الرسالة الأصلية"
+            },
+            "channels": {
+                "title": "قنوات الاقتراحات",
+                "addChannel": "إضافة قناة",
+                "selectChannel": "اختر قناة",
+                "noChannels": "لم يتم تكوين أي قنوات"
+            },
+            "reactions": {
+                "title": "إعدادات التفاعلات",
+                "enabled": "التفاعلات مفعلة",
+                "upvote": "رمز التصويت الإيجابي",
+                "downvote": "رمز التصويت السلبي",
+                "star": "رمز النجمة"
+            },
+            "thread": {
+                "title": "إعدادات المناقشة",
+                "enabled": "إنشاء مناقشات",
+                "nameFormat": "تنسيق اسم المناقشة",
+                "nameFormatHelp": "استخدم {title} لتضمين محتوى الاقتراح",
+                "archiveDuration": "مدة الأرشفة التلقائية (دقائق)"
+            },
+            "messages": {
+                "saved": "تم حفظ إعدادات الاقتراحات بنجاح",
+                "error": "فشل في حفظ إعدادات الاقتراحات",
+                "confirmReset": "هل أنت متأكد من إعادة تعيين جميع إعدادات الاقتراحات؟"
+            }
+        },
+        "settings": {
+            "title": "إعدادات البوت",
+            "subtitle": "تكوين لغة البوت والأدوار والإعدادات الأخرى.",
+            "languageSettings": "إعدادات اللغة",
+            "defaultLanguage": "لغة البوت الافتراضية",
+            "supportedLanguages": "اللغات المدعومة",
+            "saveChanges": "حفظ التغييرات",
+            "settingsSaved": "تم حفظ الإعدادات بنجاح"
+        },
+        "welcome": {
+            "title": "نظام الترحيب",
+            "subtitle": "إرسال رسالة ترحيب مخصصة عند انضمام عضو جديد إلى السيرفر.",
+            "stats": {
+                "status": "حالة النظام",
+                "channel": "قناة الترحيب",
+                "members": "الأعضاء",
+                "placeholders": "الرموز"
+            },
+            "status": {
+                "on": "مفعل",
+                "off": "معطل",
+                "channelSet": "محددة",
+                "channelMissing": "غير محددة"
+            },
+            "enableLabel": "رسائل الترحيب",
+            "channelLabel": "قناة الترحيب",
+            "messageLabel": "رسالة الترحيب",
+            "languageLabel": "لغة الرسالة",
+            "placeholdersTitle": "الرموز المتاحة",
+            "placeholder": {
+                "user": "منشن العضو الجديد",
+                "username": "اسم العضو المعروض",
+                "server": "اسم السيرفر",
+                "memberCount": "عدد الأعضاء الحالي"
+            },
+            "previewTitle": "معاينة مباشرة",
+            "selectPlaceholder": "اختر قناة",
+            "defaultMessageHint": "اتركه فارغاً لاستخدام الرسالة الافتراضية المترجمة.",
+            "defaultMessage": "مرحباً {user} في {server}! أنت العضو رقم {memberCount}."
+        },
+        "welcomeGoodbye": {
+            "title": "الترحيب والمغادرة",
+            "subtitle": "أرسل رسائل ترحيب ومغادرة، مع صور مخصصة كاملة التركيب، عند انضمام الأعضاء أو مغادرتهم لسيرفرك.",
+            "shortTitle": "الترحيب والمغادرة",
+            "globalToggle": "تفعيل نظام الترحيب والمغادرة",
+            "close": "إغلاق",
+            "on": "مفعل",
+            "off": "معطل",
+            "statusLabel": "حالة النظام",
+            "channelCount": "قناة",
+            "saveChanges": "حفظ التغييرات",
+            "unsavedChanges": "لديك تغييرات غير محفوظة",
+            "resetDefaults": "إعادة تعيين",
+            "variables": {
+                "title": "المتغيرات (انقر للنسخ)",
+                "clickToCopy": "تم النسخ!",
+                "user": "منشن العضو",
+                "userName": "اسم العضو / الاسم المعروض",
+                "memberCount": "عدد الأعضاء الحالي",
+                "server": "اسم السيرفر",
+                "inviter": "منشن الداعي (عند توفره)",
+                "inviterName": "اسم الداعي (عند توفره)",
+                "invites": "عدد دعوات العضو (عند توفره)"
+            },
+            "welcome": {
+                "title": "رسالة الترحيب",
+                "subtitle": "إرسال رسالة عند دخول عضو إلى السيرفر",
+                "enable": "إرسال رسالة عند دخول عضو إلى السيرفر",
+                "contentLabel": "رسالة الترحيب",
+                "contentHint": "اتركه فارغاً لاستخدام الرسالة الافتراضية المترجمة.",
+                "deliveryLabel": "طريقة الإرسال",
+                "deliveryDm": "إرسال عبر الخاص",
+                "deliveryChannel": "إرسال إلى قناة",
+                "channelLabel": "قناة الترحيب",
+                "selectChannel": "اختر قناة",
+                "testLabel": "معاينة مع عضو",
+                "testMember": "استخدام عضو تجريبي",
+                "testButton": "اختبار الترحيب"
+            },
+            "goodbye": {
+                "title": "رسالة المغادرة",
+                "subtitle": "إرسال رسالة عند مغادرة عضو للسيرفر",
+                "enable": "إرسال رسالة عند مغادرة عضو للسيرفر",
+                "contentLabel": "رسالة المغادرة",
+                "contentHint": "اتركه فارغاً لاستخدام الرسالة الافتراضية المترجمة.",
+                "deliveryLabel": "قناة الإرسال",
+                "channelLabel": "قناة المغادرة",
+                "selectChannel": "اختر قناة",
+                "testLabel": "معاينة مع عضو",
+                "testMember": "استخدام عضو تجريبي",
+                "testButton": "اختبار المغادرة"
+            },
+            "image": {
+                "title": "صورة الترحيب",
+                "subtitle": "إرسال صورة عند دخول عضو إلى السيرفر",
+                "enable": "إرسال صورة عند دخول عضو إلى السيرفر",
+                "deliveryLabel": "إرسال الصورة",
+                "deliveryWithText": "مع الرسالة",
+                "deliveryBeforeText": "قبل الرسالة",
+                "deliveryChannel": "إلى قناة",
+                "channelLabel": "قناة الصورة",
+                "selectChannel": "اختر قناة",
+                "previewTitle": "معاينة مباشرة",
+                "refreshPreview": "تحديث المعاينة",
+                "previewHint": "اسحب الصورة الشخصية أو اسم المستخدم أو النص لتحديد موضعها، واستخدم المقابض لتغيير الحجم. اللوحة تطابق الصورة النهائية المولّدة.",
+                "advancedPositioning": "تحديد الموضع المتقدم",
+                "noBackground": "لا توجد خلفية محددة. استخدم رفع صورة أو تطبيق رابط لإضافة واحدة.",
+                "transparent": "شفاف",
+                "canvasWidth": "عرض اللوحة",
+                "canvasHeight": "ارتفاع اللوحة",
+                "templatesGallery": "القوالب",
+                "templatesLoading": "جارٍ تحميل القوالب...",
+                "templatesEmpty": "لا توجد قوالب متاحة.",
+                "zoomIn": "تكبير",
+                "zoomOut": "تصغير",
+                "zoomFit": "ملاءمة العرض",
+                "matchBackground": "ضبط حجم اللوحة ليطابق الخلفية",
+                "layerForward": "تقديم الطبقة للأمام",
+                "layerBackward": "إرسال الطبقة للخلف",
+                "verifyRender": "عرض عبر الخادم",
+                "sampleName": "عضو",
+                "sampleServer": "خادم Viora",
+                "templatesTitle": "القوالب",
+                "useTemplate": "استخدام قالب",
+                "createTemplate": "إنشاء قالب",
+                "templateName": "اسم القالب",
+                "templateSaved": "تم حفظ القالب",
+                "templateDefaultName": "قالبي",
+                "tabs": {
+                    "background": "الخلفية",
+                    "avatar": "الصورة الشخصية",
+                    "username": "اسم المستخدم",
+                    "text": "النص"
+                },
+                "background": {
+                    "typeLabel": "نوع الخلفية",
+                    "none": "بدون",
+                    "color": "لون ثابت",
+                    "image": "صورة",
+                    "uploadLabel": "رفع صورة",
+                    "uploadButton": "رفع",
+                    "uploadHint": "PNG أو JPG أو WEBP بحد أقصى 10MB",
+                    "urlLabel": "رابط الصورة",
+                    "applyUrl": "تطبيق الرابط",
+                    "remove": "إزالة الخلفية",
+                    "replace": "استبدال الخلفية",
+                    "loadFailed": "تعذر تحميل صورة الخلفية",
+                    "fit": "القص / الملاءمة",
+                    "fitCover": "قص (تغطية)",
+                    "fitContain": "ملاءمة (احتواء)",
+                    "fitFill": "تمديد (تعبئة)",
+                    "positionX": "الموضع X",
+                    "positionY": "الموضع Y",
+                    "scale": "التكبير",
+                    "overlay": "طبقة تعتيم",
+                    "overlayColor": "لون التعتيم",
+                    "overlayOpacity": "شفافية التعتيم"
+                },
+                "avatar": {
+                    "enable": "إظهار الصورة الشخصية",
+                    "x": "الموضع X",
+                    "y": "الموضع Y",
+                    "width": "العرض",
+                    "height": "الارتفاع",
+                    "scale": "التكبير",
+                    "radius": "انحناء الحواف",
+                    "circle": "صورة دائرية",
+                    "borderWidth": "عرض الحدود",
+                    "borderStyle": "نمط الحدود",
+                    "borderColor": "لون الحدود",
+                    "shadow": "الظل",
+                    "shadowColor": "لون الظل",
+                    "shadowBlur": "ضبابية الظل",
+                    "opacity": "الشفافية"
+                },
+                "username": {
+                    "enable": "إظهار اسم المستخدم",
+                    "text": "النص",
+                    "x": "الموضع X",
+                    "y": "الموضع Y",
+                    "font": "الخط",
+                    "fontSize": "حجم الخط",
+                    "fontWeight": "وزن الخط",
+                    "color": "لون النص",
+                    "align": "المحاذاة",
+                    "maxWidth": "الحد الأقصى للعرض",
+                    "wrap": "التفاف النص",
+                    "lineSpacing": "تباعد الأسطر",
+                    "shadow": "الظل",
+                    "shadowColor": "لون الظل",
+                    "shadowBlur": "ضبابية الظل",
+                    "stroke": "حدود / مخطط",
+                    "strokeColor": "لون المخطط",
+                    "strokeWidth": "سمك المخطط",
+                    "letterSpacing": "تباعد الأحرف",
+                    "opacity": "الشفافية"
+                },
+                "text": {
+                    "enable": "إظهار النص",
+                    "content": "النص المخصص",
+                    "x": "الموضع X",
+                    "y": "الموضع Y",
+                    "font": "الخط",
+                    "fontSize": "حجم الخط",
+                    "fontWeight": "وزن الخط",
+                    "color": "لون النص",
+                    "align": "المحاذاة",
+                    "maxWidth": "الحد الأقصى للعرض",
+                    "wrap": "التفاف النص",
+                    "lineSpacing": "تباعد الأسطر",
+                    "shadow": "الظل",
+                    "shadowColor": "لون الظل",
+                    "shadowBlur": "ضبابية الظل",
+                    "stroke": "حدود / مخطط",
+                    "strokeColor": "لون المخطط",
+                    "strokeWidth": "سمك المخطط",
+                    "letterSpacing": "تباعد الأحرف",
+                    "opacity": "الشفافية"
+                }
+            },
+            "goodbyeImage": {
+                "title": "صورة المغادرة",
+                "subtitle": "إرسال صورة عند مغادرة عضو للسيرفر",
+                "enable": "إرسال صورة عند مغادرة عضو للسيرفر"
+            },
+            "align": {
+                "left": "يسار",
+                "center": "وسط",
+                "right": "يمين"
+            },
+            "borderStyle": {
+                "solid": "متصل",
+                "dashed": "متقطع"
+            },
+            "testResult": {
+                "title": "نتيجة الاختبار",
+                "usedMember": "تم الإنشاء باستخدام هذا العضو",
+                "usedSample": "تم الإنشاء باستخدام عضو تجريبي",
+                "textLabel": "الرسالة",
+                "imageLabel": "الصورة",
+                "noImage": "الصورة معطلة",
+                "hint": "هذه معاينة مباشرة. استخدم حفظ التغييرات لتخزينها.",
+                "runTest": "تشغيل الاختبار",
+                "memberLabel": "الاختبار مع عضو"
+            },
+            "saved": "تم حفظ الإعدادات بنجاح",
+            "notSaved": "الرجاء إصلاح المشاكل أدناه",
+            "uploadError": "فشل الرفع",
+            "invalidUrlError": "رابط الصورة غير صالح",
+            "fetchError": "تعذر تحميل إعدادات الصفحة"
+        }
+    },
+    "docs": {
+        "title": "التوثيق",
+        "subtitle": "دليل شامل لميزات ووظائف بوت الديسكورد",
+        "video": {
+            "title": "معاينة البوت",
+            "description": "شاهد دليلنا المرئي الشامل الذي يعرض جميع ميزات وإمكانيات البوت."
+        },
+        "overview": {
+            "title": "نظرة عامة على البوت",
+            "serverManagement": {
+                "title": "إدارة السيرفر",
+                "description": "أدوات شاملة لإدارة وإشراف السيرفر"
+            },
+            "protection": {
+                "title": "حماية متقدمة",
+                "description": "أنظمة حماية متعددة الطبقات ضد الهجمات"
+            },
+            "community": {
+                "title": "ميزات المجتمع",
+                "description": "تفاعل مع مجتمعك من خلال الميزات التفاعلية"
+            },
+            "configuration": {
+                "title": "إعداد سهل",
+                "description": "لوحة تحكم سهلة الاستخدام لجميع الإعدادات"
+            }
+        },
+        "gettingStarted": {
+            "title": "البدء",
+            "initialSetup": {
+                "title": "الإعداد الأولي",
+                "steps": {
+                    "invite": {
+                        "title": "دعوة البوت",
+                        "description": "استخدم رابط OAuth2 لدعوة البوت إلى سيرفرك مع الصلاحيات المطلوبة."
+                    },
+                    "configure": {
+                        "title": "تكوين الإعدادات الأساسية",
+                        "description": "قم بإعداد اللغة المفضلة والبادئة وإعدادات السيرفر الأساسية."
+                    },
+                    "permissions": {
+                        "title": "إعداد الصلاحيات",
+                        "description": "قم بتكوين صلاحيات الرتب ومستويات الوصول للأوامر المختلفة."
+                    },
+                    "features": {
+                        "title": "تفعيل الميزات",
+                        "description": "قم بتفعيل وتكوين الميزات المحددة التي تريد استخدامها."
+                    }
+                }
+            },
+            "requirements": {
+                "title": "متطلبات النظام",
+                "items": [
+                    "سيرفر ديسكورد مع صلاحيات \"إدارة السيرفر\"",
+                    "اتصال إنترنت مستقر",
+                    "إعداد صحيح لتسلسل الرتب",
+                    "صلاحيات البوت المطلوبة مفعلة"
+                ]
+            }
+        },
+        "features": {
+            "autoReply": {
+                "title": "الرد التلقائي",
+                "description": "إعداد ردود تلقائية على رسائل محددة في سيرفرك.",
+                "features": {
+                    "sections": "أقسام متعددة",
+                    "triggers": "مشغلات قابلة للتخصيص",
+                    "responses": "خيارات الرد",
+                    "settings": "إعدادات متقدمة"
+                }
+            },
+            "tempChannels": {
+                "title": "القنوات المؤقتة",
+                "description": "إنشاء قنوات صوتية ديناميكية تتم إدارتها تلقائياً بواسطة البوت.",
+                "features": {
+                    "creation": "إنشاء ديناميكي",
+                    "names": "أسماء مخصصة",
+                    "management": "إدارة تلقائية",
+                    "permissions": "التحكم في الصلاحيات"
+                }
+            },
+            "suggestions": {
+                "title": "الاقتراحات",
+                "description": "السماح للأعضاء بتقديم والتصويت على اقتراحات السيرفر.",
+                "features": {
+                    "voting": "نظام التصويت",
+                    "threads": "دعم المناقشات",
+                    "images": "دعم الصور",
+                    "content": "التحكم في المحتوى"
+                }
+            },
+            "protection": {
+                "title": "الحماية",
+                "description": "ميزات أمان شاملة لحماية سيرفرك.",
+                "features": {
+                    "antispam": "مكافحة السبام",
+                    "antibot": "مكافحة البوتات",
+                    "raid": "الحماية من الهجمات",
+                    "channel": "حماية القنوات"
+                }
+            },
+            "tickets": {
+                "title": "التذاكر",
+                "description": "نظام تذاكر الدعم لمساعدة الأعضاء.",
+                "features": {
+                    "creation": "إنشاء التذاكر",
+                    "management": "إدارة الطاقم",
+                    "categories": "نظام الفئات",
+                    "logging": "سجلات شاملة"
+                }
+            }
+        },
+        "commands": {
+            "title": "مرجع الأوامر",
+            "general": {
+                "title": "الأوامر العامة",
+                "help": {
+                    "title": "help",
+                    "description": "عرض جميع الأوامر المتاحة واستخدامها"
+                },
+                "ping": {
+                    "title": "ping",
+                    "description": "فحص وقت استجابة البوت وحالته"
+                },
+                "server": {
+                    "title": "server",
+                    "description": "عرض معلومات وإحصائيات السيرفر"
+                },
+                "user": {
+                    "title": "user",
+                    "description": "عرض معلومات وإحصائيات المستخدم"
+                }
+            },
+            "moderation": {
+                "title": "أوامر الإشراف",
+                "ban": {
+                    "title": "ban",
+                    "description": "حظر مستخدم من السيرفر",
+                    "usage": "ban @user [السبب]"
+                },
+                "kick": {
+                    "title": "kick",
+                    "description": "طرد مستخدم من السيرفر",
+                    "usage": "kick @user [السبب]"
+                },
+                "mute": {
+                    "title": "mute",
+                    "description": "كتم مستخدم في السيرفر",
+                    "usage": "mute @user [المدة] [السبب]"
+                },
+                "clear": {
+                    "title": "clear",
+                    "description": "حذف عدة رسائل دفعة واحدة",
+                    "usage": "clear [العدد]"
+                }
+            }
+        },
+        "troubleshooting": {
+            "title": "استكشاف الأخطاء وإصلاحها",
+            "commonIssues": {
+                "title": "المشاكل الشائعة",
+                "botNotResponding": {
+                    "title": "البوت لا يستجيب",
+                    "description": "إذا توقف البوت عن الاستجابة للأوامر:",
+                    "steps": [
+                        "تحقق مما إذا كان البوت متصلاً",
+                        "تأكد من أن البوت لديه الصلاحيات المناسبة",
+                        "تأكد من استخدام الأوامر في القنوات المسموح بها",
+                        "تحقق من صحة صيغة الأمر"
+                    ]
+                },
+                "permissionErrors": {
+                    "title": "أخطاء الصلاحيات",
+                    "description": "إذا واجهت مشاكل في الصلاحيات:",
+                    "steps": [
+                        "تحقق من تسلسل رتب البوت",
+                        "تحقق من صلاحيات القناة",
+                        "تأكد من تفعيل الصلاحيات المطلوبة",
+                        "راجع إعدادات الرتب"
+                    ]
+                }
+            },
+            "support": {
+                "title": "الدعم",
+                "description": "تحتاج مساعدة؟ إليك كيفية الحصول على الدعم:",
+                "discord": {
+                    "title": "انضم إلى سيرفر الديسكورد",
+                    "description": "احصل على المساعدة من مجتمعنا"
+                },
+                "github": {
+                    "title": "مشاكل GitHub",
+                    "description": "الإبلاغ عن الأخطاء والاقتراحات"
+                }
+            }
+        }
+    },
+    "comingSoon": {
+        "title": "قريباً",
+        "subtitle": "هذه الميزة قيد التطوير",
+        "description": "نحن نعمل بجد لتقديم هذه الميزة قريباً.",
+        "noFaq": "لا توجد أسئلة متكررة متاحة لهذه الميزة حتى الآن.",
+        "features": {
+            "welcomeSystem": {
+                "title": "نظام الترحيب",
+                "subtitle": "إنشاء رسائل ترحيب مخصصة للأعضاء الجدد",
+                "description": "الترحيب تلقائياً بالأعضاء الجدد مع رسائل وأدوار وتضمينات قابلة للتخصيص.",
+                "features": {
+                    "customMessages": "رسائل ترحيب قابلة للتخصيص",
+                    "autoRole": "تعيين الرتب التلقائي",
+                    "memberCount": "تتبع عدد الأعضاء",
+                    "customEmbeds": "تضمينات وصور مخصصة",
+                    "channelManagement": "إدارة قنوات الترحيب",
+                    "dmWelcome": "رسائل ترحيب خاصة للأعضاء",
+                    "templates": "نماذج متعددة لرسائل الترحيب",
+                    "variables": "دعم المتغيرات"
+                }
+            },
+            "selectRoles": {
+                "title": "مدير اختيار الرتب",
+                "subtitle": "إنشاء قوائم تفاعلية لاختيار الرتب",
+                "description": "إنشاء قوائم تفاعلية لاختيار الرتب لأعضائك باستخدام الأزرار والقوائم المنسدلة والمزيد.",
+                "features": {
+                    "buttonRoles": "اختيار الرتب بالأزرار",
+                    "dropdowns": "قوائم منسدلة للرتب",
+                    "categories": "فئات ومجموعات الرتب",
+                    "customization": "أيقونات وألوان مخصصة للرتب",
+                    "descriptions": "أوصاف الرتب",
+                    "permissions": "الرتب والصلاحيات المطلوبة",
+                    "multiSelect": "خيارات اختيار متعددة",
+                    "reactionRoles": "دعم رتب التفاعل القديمة"
+                }
+            },
+            "games": {
+                "title": "ألعاب ديسكورد",
+                "subtitle": "إشراك مجتمعك بألعاب تفاعلية",
+                "description": "إشراك مجتمعك بألعاب تفاعلية، ومسابقات، ومنافسات، والمزيد.",
+                "features": {
+                    "trivia": "مسابقات المعلومات العامة",
+                    "wordGames": "ألعاب الكلمات",
+                    "numberGuessing": "تخمين الأرقام",
+                    "reactionGames": "ألعاب التفاعل",
+                    "multiplayer": "تحديات متعددة اللاعبين",
+                    "economy": "تكامل الاقتصاد",
+                    "rewards": "مكافآت قابلة للتخصيص",
+                    "leaderboards": "جداول المتصدرين والإحصائيات"
+                }
+            },
+            "autoMod": {
+                "title": "نظام الإشراف التلقائي",
+                "subtitle": "إشراف تلقائي متقدم",
+                "description": "نظام إشراف تلقائي متقدم للحفاظ على سلامة ونظافة السيرفر الخاص بك.",
+                "features": {
+                    "antiSpam": "حماية ضد الرسائل المزعجة",
+                    "profanityFilter": "تصفية الألفاظ النابية",
+                    "linkBlocking": "حظر الروابط والدعوات",
+                    "raidDetection": "اكتشاف الهجمات",
+                    "mentionPrevention": "منع الإشارات الجماعية",
+                    "attachmentScanning": "فحص المرفقات",
+                    "wordFilters": "مرشحات كلمات مخصصة",
+                    "punishments": "إجراءات وعقوبات آلية"
+                }
+            },
+            "autoLines": {
+                "title": "الرسائل التلقائية",
+                "subtitle": "نظام الرسائل المجدولة",
+                "description": "جدولة رسائل تلقائية ليتم إرسالها إلى قنواتك بشكل منتظم.",
+                "features": {
+                    "scheduledAnnouncements": "إعلانات مجدولة",
+                    "recurringReminders": "تذكيرات متكررة",
+                    "customIntervals": "فترات زمنية مخصصة",
+                    "dynamicContent": "محتوى ديناميكي مع متغيرات",
+                    "randomMessages": "اختيار رسائل عشوائية",
+                    "multiChannel": "دعم قنوات متعددة",
+                    "embedMessages": "رسائل مضمنة",
+                    "conditionalMessages": "رسائل مشروطة"
+                }
+            },
+            "leveling": {
+                "title": "نظام المستويات",
+                "subtitle": "نقاط الخبرة وتقدم المستويات للأعضاء",
+                "description": "إشراك مجتمعك بنظام نقاط خبرة ومستويات قابل للتخصيص مع مكافآت.",
+                "features": {
+                    "xpTracking": "تتبع نقاط الخبرة للصوت والنص",
+                    "levelingCurves": "منحنيات مستويات مخصصة",
+                    "roleRewards": "مكافآت الرتب",
+                    "announcements": "إعلانات الترقية للمستوى",
+                    "leaderboards": "جداول متصدري نقاط الخبرة",
+                    "rankCards": "بطاقات تصنيف مخصصة",
+                    "multipliers": "مضاعفات نقاط الخبرة",
+                    "statistics": "إحصائيات النشاط"
+                }
+            }
+        },
+        "developmentStatus": {
+            "title": "تقدم التطوير",
+            "designPhase": "مرحلة التصميم",
+            "development": "التطوير",
+            "testing": "الاختبار",
+            "estimatedRelease": "الإصدار المتوقع",
+            "releaseDate": "الربع الثاني 2023"
+        },
+        "stayUpdated": {
+            "title": "تابع التحديثات",
+            "description": "تابعنا للحصول على آخر التحديثات حول هذه الميزة والميزات الأخرى القادمة.",
+            "discord": {
+                "title": "انضم إلى الديسكورد",
+                "description": "للدعم والتحديثات المباشرة"
+            },
+            "github": {
+                "title": "تابعنا على GitHub",
+                "description": "لمتابعة تطوير المشروع"
+            },
+            "youtube": {
+                "title": "شاهد على YouTube",
+                "description": "للشروحات والإعلانات"
+            }
+        }
+    }
+}

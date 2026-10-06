@@ -1,0 +1,108 @@
+<%- contentFor('body') %>
+
+<div class="space-y-6 p-4 md:p-6 animate-fade-in">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white"><%= locale.dashboard.user.title %></h2>
+            <a href="/dashboard" class="text-sm text-blue-500 hover:text-blue-700">
+                <i class="fas fa-arrow-left mr-1"></i><%= locale.dashboard.user.backToSearch %>
+            </a>
+        </div>
+
+        <div id="userLoader" class="flex items-center justify-center py-16">
+            <div class="h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+
+        <div id="userProfileError" class="hidden">
+            <div class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg p-4">
+                <i class="fas fa-exclamation-circle mr-2"></i><span id="userProfileErrorText"></span>
+            </div>
+        </div>
+
+        <div id="userContent" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
+                    <div class="flex flex-col items-center text-center mb-6">
+                        <img id="userAvatar" src="" alt="avatar" class="w-24 h-24 rounded-full shadow-lg mb-4">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white" id="userTag"></h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" id="userIdLabel"></p>
+                        <span id="userMemberBadge" class="mt-2 text-xs text-gray-500 dark:text-gray-400"></span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500 dark:text-gray-400"><%= locale.dashboard.user.memberSince %></span>
+                            <span class="text-gray-800 dark:text-white" id="userJoined"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500 dark:text-gray-400"><%= locale.dashboard.user.accountCreated %></span>
+                            <span class="text-gray-800 dark:text-white" id="userCreated"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500 dark:text-gray-400"><%= locale.dashboard.user.totalActions %></span>
+                            <span class="text-gray-800 dark:text-white font-bold" id="userTotalActions"></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 dark:text-gray-400"><%= locale.dashboard.user.isTimeouted %></span>
+                            <span id="userTimeoutBadge"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 lg:col-span-2">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.user.roles %></h3>
+                    <div id="userRoles" class="flex flex-wrap gap-2"></div>
+                    <div class="mt-6">
+                        <div class="flex flex-wrap gap-4">
+                            <% const breakdownKeys = ['warn', 'timeout', 'kick', 'ban', 'automod', 'antiraid'] %>
+                            <% breakdownKeys.forEach(key => { %>
+                                <div class="bg-white dark:bg-gray-800 rounded-lg px-4 py-2 shadow-sm min-w-[90px]">
+                                    <div class="text-2xl font-bold text-gray-800 dark:text-white" id="buckets-<%= key %>">0</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400"><%= locale.dashboard.actionTypes[key] ? locale.dashboard.actionTypes[key] : key %></div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+                        <%= locale.dashboard.user.warnings %> <span class="text-sm font-normal text-gray-500" id="activeWarningCount"></span>
+                    </h3>
+                    <div class="overflow-x-auto bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="text-left text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                    <th class="py-3 px-4"><%= locale.dashboard.warnings.reason %></th>
+                                    <th class="py-3 px-4"><%= locale.dashboard.warnings.moderator %></th>
+                                    <th class="py-3 px-4"><%= locale.dashboard.warnings.date %></th>
+                                    <th class="py-3 px-4"><%= locale.dashboard.warnings.expires %></th>
+                                </tr>
+                            </thead>
+                            <tbody id="userWarningsBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="userNoWarnings" class="hidden text-center py-8 text-gray-400"><%= locale.dashboard.user.noWarnings %></div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.user.history %></h3>
+                    <div class="overflow-x-auto bg-gray-50 dark:bg-gray-700 rounded-lg max-h-96 overflow-y-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="text-left text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                                    <th class="py-3 px-4"><%= locale.dashboard.history.date %></th>
+                                    <th class="py-3 px-4"><%= locale.dashboard.history.action %></th>
+                                    <th class="py-3 px-4"><%= locale.dashboard.history.reason %></th>
+                                </tr>
+                            </thead>
+                            <tbody id="userHistoryBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="userNoHistory" class="hidden text-center py-8 text-gray-400"><%= locale.dashboard.user.noHistory %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

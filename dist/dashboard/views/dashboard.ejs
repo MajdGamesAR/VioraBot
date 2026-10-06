@@ -1,0 +1,188 @@
+<%- contentFor('body') %>
+
+<div class="space-y-6 p-4 md:p-6 animate-fade-in">
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold"><%= locale.dashboard.overview.welcome %></h1>
+                    <p class="text-blue-100 mt-1 max-w-2xl"><%= locale.dashboard.overview.welcomeMessage %></p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 text-sm font-medium">
+                        <i class="fas fa-sync-alt" id="refreshOverview"></i>
+                        <span id="lastUpdate"><%= locale.dashboard.overview.liveData %></span>
+                    </span>
+                    <div class="relative">
+                        <input type="text" id="userSearchInput" placeholder="<%= locale.dashboard.overview.searchUser %>"
+                               class="bg-white/20 placeholder-blue-100 text-white rounded-full px-4 py-1.5 text-sm w-48 md:w-64 focus:outline-none focus:bg-white/30">
+                        <button id="userSearchBtn" class="absolute right-2 top-1/2 -translate-y-1/2 text-blue-100 text-sm">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+        <div class="stat-card blue-glow">
+            <div class="stat-icon text-blue-500"><i class="fas fa-shield-alt"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statToday"><%= overview ? overview.today.total : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.todayTotal %></p>
+            </div>
+        </div>
+        <div class="stat-card amber-glow">
+            <div class="stat-icon text-amber-500"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statWarnings"><%= overview ? overview.totals.warnings : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.totalWarnings %></p>
+            </div>
+        </div>
+        <div class="stat-card green-glow">
+            <div class="stat-icon text-green-500"><i class="fas fa-ticket-alt"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statTicketsOpen"><%= overview ? overview.tickets.open : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.ticketsOpen %></p>
+            </div>
+        </div>
+        <div class="stat-card purple-glow">
+            <div class="stat-icon text-purple-500"><i class="fas fa-lightbulb"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statSuggestions"><%= overview ? overview.suggestions.pending : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.suggestionsPending %></p>
+            </div>
+        </div>
+        <div class="stat-card red-glow">
+            <div class="stat-icon text-red-500"><i class="fas fa-users"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statMembers"><%= overview && overview.guild ? overview.guild.memberCount : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.members %></p>
+            </div>
+        </div>
+        <div class="stat-card green-glow">
+            <div class="stat-icon text-green-500"><i class="fas fa-signal"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statOnline"><%= overview && overview.guild ? overview.guild.onlineMembers || '—' : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.onlineMembers %></p>
+            </div>
+        </div>
+        <div class="stat-card cyan-glow">
+            <div class="stat-icon text-cyan-500"><i class="fas fa-hashtag"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statChannels"><%= overview && overview.guild ? overview.guild.channels : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.channels %></p>
+            </div>
+        </div>
+        <div class="stat-card slate-glow">
+            <div class="stat-icon text-gray-500"><i class="fas fa-id-badge"></i></div>
+            <div class="stat-content">
+                <h3 class="stat-value" id="statRoles"><%= overview && overview.guild ? overview.guild.roles : 0 %></h3>
+                <p class="stat-label"><%= locale.dashboard.overview.roles %></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div class="flex flex-wrap items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white"><%= locale.dashboard.overview.analyticsTitle %></h2>
+                <div class="flex items-center gap-2">
+                    <button class="period-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-all" data-period="day"><%= locale.dashboard.overview.periodDay %></button>
+                    <button class="period-btn px-3 py-1.5 rounded-lg text-sm font-medium transition-all" data-period="week"><%= locale.dashboard.overview.periodWeek %></button>
+                    <button class="period-btn active px-3 py-1.5 rounded-lg text-sm font-medium transition-all" data-period="month"><%= locale.dashboard.overview.periodMonth %></button>
+                </div>
+            </div>
+            <div class="relative h-72">
+                <canvas id="moderationChart"></canvas>
+                <div id="chartLoader" class="absolute inset-0 flex items-center justify-center">
+                    <div class="h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-6"><%= locale.dashboard.overview.actionBreakdown %></h2>
+            <div class="relative h-72">
+                <canvas id="breakdownChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.overview.topStaff %></h2>
+            <div id="topStaffList" class="space-y-3">
+                <div class="flex items-center justify-center py-8 text-gray-400">
+                    <div class="h-6 w-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.overview.recentActivity %></h2>
+            <div id="recentActivityList" class="space-y-3">
+                <div class="flex items-center justify-center py-8 text-gray-400">
+                    <div class="h-6 w-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.overview.ticketsManagement %></h2>
+            <div class="flex gap-2 mb-4">
+                <% const ticketStatuses = [
+                    { key: 'open', label: locale.dashboard.overview.statusOpen },
+                    { key: 'claimed', label: locale.dashboard.overview.statusClaimed },
+                    { key: 'closed', label: locale.dashboard.overview.statusClosed }
+                ] %>
+                <% ticketStatuses.forEach(s => { %>
+                    <button class="ticket-filter px-3 py-1 rounded-lg text-xs font-medium transition-all <%= s.key === 'open' ? 'active' : '' %>" data-status="<%= s.key %>"><%= s.label %></button>
+                <% }) %>
+            </div>
+            <div id="ticketList" class="space-y-2">
+                <div class="flex items-center justify-center py-8 text-gray-400">
+                    <div class="h-6 w-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4"><%= locale.dashboard.overview.suggestionsManagement %></h2>
+        <div class="flex gap-2 mb-4">
+            <% const suggestionStatuses = [
+                { key: 'pending', label: locale.dashboard.overview.statusPending },
+                { key: 'accepted', label: locale.dashboard.overview.statusAccepted },
+                { key: 'rejected', label: locale.dashboard.overview.statusRejected }
+            ] %>
+            <% suggestionStatuses.forEach(s => { %>
+                <button class="suggestion-filter px-3 py-1 rounded-lg text-xs font-medium transition-all <%= s.key === 'pending' ? 'active' : '' %>" data-status="<%= s.key %>"><%= s.label %></button>
+            <% }) %>
+        </div>
+        <div id="suggestionList" class="space-y-2">
+            <div class="flex items-center justify-center py-8 text-gray-400">
+                <div class="h-6 w-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="reasonModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4" id="reasonModalTitle"></h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4 hidden" id="reasonModalHint"></p>
+        <textarea id="reasonModalInput" rows="3"
+                  class="w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        <div id="reasonModalError" class="error-message text-red-500 text-sm mt-1 hidden"><%= locale.dashboard.overview.reasonRequired %></div>
+        <div class="flex justify-end space-x-4 mt-6">
+            <button id="reasonModalCancel" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">Cancel</button>
+            <button id="reasonModalConfirm" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"></button>
+        </div>
+    </div>
+</div>
+
+<div id="loadError" class="hidden bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg p-4">
+    <i class="fas fa-exclamation-circle mr-2"></i><span id="loadErrorText"></span>
+</div>
